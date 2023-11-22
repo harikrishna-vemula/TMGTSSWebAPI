@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\TenantScoreSheet.csproj": {}
+    "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\TenantScoreSheet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\TenantScoreSheet.csproj": {
+    "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\TenantScoreSheet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\TenantScoreSheet.csproj",
+        "projectUniqueName": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\TenantScoreSheet.csproj",
         "projectName": "TenantScoreSheet",
-        "projectPath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\TenantScoreSheet.csproj",
+        "projectPath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\TenantScoreSheet.csproj",
         "packagesPath": "C:\\Users\\everest\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\obj\\",
+        "outputPath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\everest\\AppData\\Roaming\\NuGet\\NuGet.Config",

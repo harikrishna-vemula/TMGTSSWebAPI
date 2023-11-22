@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TenantScoreSheet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fa88e63feafffc42481da615d9d7992180cc0e0")]
 [assembly: System.Reflection.AssemblyProductAttribute("TenantScoreSheet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TenantScoreSheet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

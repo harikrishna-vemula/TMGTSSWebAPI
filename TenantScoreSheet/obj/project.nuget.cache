@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eSdWSa7Q2H0RPeIxjZrEh8kFSMTn7OLthY0moQsSvXbdMAi9lZuvj+m91lEzvP5+LHxTo3Bbs8OoFIPEIabnNQ==",
+  "dgSpecHash": "QHpTa5Ra2l/f++mQscuydQUFxt00NYrWMvvVqtL7CdfCLA2j7gvrH/B0Anj7v1bo84Jgih4Megfujkzhg96z0A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\WebAPI\\TenantScoreSheet\\TenantScoreSheet\\TenantScoreSheet.csproj",
+  "projectFilePath": "C:\\Users\\everest\\Desktop\\TMG TenantScoreSheet\\WebAPI\\TMGTSSWebAPI\\TMGTSSWebAPI\\TenantScoreSheet\\TenantScoreSheet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\everest\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\everest\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

@@ -141,7 +141,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_InsertUsers", sqlcon))
+                using (cmd = new SqlCommand("sp_InsertUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
@@ -154,7 +154,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Address", objuser.Address);
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
-                     
+
                     cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
                     sqlcon.Open();
 
@@ -186,21 +186,13 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_InsertUsers", sqlcon))
+                using (cmd = new SqlCommand("sp_InsertUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
-                    cmd.Parameters.AddWithValue("@MiddleName", objuser.MiddleName);
-                    cmd.Parameters.AddWithValue("@LastName", objuser.LastName);
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
-                    cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@Email", objuser.Email);
-                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
-                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
-                    cmd.Parameters.AddWithValue("@Status", objuser.Status);
+                    cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
-
-                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -229,7 +221,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("spUpdateUsers", sqlcon))
+                using (cmd = new SqlCommand("sp_UpdateUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", objuser.Id);
@@ -244,7 +236,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
                     cmd.Parameters.AddWithValue("@ModifiedBy", objuser.Id);
-                    
+
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -321,6 +313,46 @@ namespace TenantScoreSheet.Repository
                 throw;
             }
             return strReturnPassword;
+        }
+
+        /// <summary>
+        /// GetUserByEmail method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public async Task<bool> GetUsersDetailsByEmail(int Id, string UserName)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("sp_GetUserDetailsByEmail", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    cmd.Parameters.AddWithValue("@Email", UserName);
+                    da = new SqlDataAdapter(cmd);
+                    await Task.Run(() => da.Fill(dt));
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    Result = true;
+                }
+                else
+                {
+                    Result = false;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+            }
+            finally
+            {
+                sqlcon.Close();
+            }
+
+            return Result;
         }
     }
 

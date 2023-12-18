@@ -61,5 +61,96 @@ namespace TenantScoreSheet.Controllers
             }
             return responseDictionary;
         }
+
+        /// <summary>
+        /// Creates a new user in the database.
+        /// </summary>
+        /// <param name="value">The Users object containing the details of the user to be created.</param>
+        /// <returns>
+        /// A dictionary containing the status and message of the operation.
+        /// </returns>
+        [HttpPost]
+        [Route("CreateUsers")]
+        public async Task<Dictionary<string, object>> CreateUsers([FromBody] Users value)
+        {
+            Dictionary<string, object> response = new();
+            UserRepository userServiceRepository = new(configuration, connection);
+            try
+            {
+                bool userExisted = false;
+
+                userExisted = await userServiceRepository.GetUsersDetailsByEmail(0,value.Email);
+
+                if (userExisted == false)
+                {
+                    bool isUserExist = userServiceRepository.CreateUsers(value);
+                    if (isUserExist == true)
+                    {
+                        response.Add("Status", "Success");
+                        response.Add("Message", "User is added successfully...");
+                    }
+                    else
+                    {
+                        response.Add("Status", "Error");
+                        response.Add("Message", "There is something happend while inserting record");
+                    }
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "User Name is Already Exists");
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Add("status", "Error");
+                response.Add("Message", ex.Message);
+            }
+            return response;
+        }
+
+        /// <summary>
+        /// Updates an existing user in the database.
+        /// </summary>
+        /// <param name="value">The Users object containing the updated details of the user.</param>
+        /// <returns>
+        /// A dictionary containing the status and message of the operation.
+        /// </returns>
+        [HttpPost]
+        [Route("UpdateUsers")]
+        public async Task<Dictionary<string, object>> UpdateUsers([FromBody] Users value)
+        {
+            Dictionary<string, object> response = new();
+            UserRepository userServiceRepository = new(configuration, connection);
+            try
+            {
+                bool userExisted = await userServiceRepository.GetUsersDetailsByEmail(value.Id, value.Email);
+                if (userExisted == false)
+                {
+                    bool result = userServiceRepository.UpdateUsers(value);
+                    if (result == true)
+                    {
+                        response.Add("Status", "Success");
+                        response.Add("Message", "User is Updated successfully...");
+                    }
+                    else
+                    {
+                        response.Add("Status", "Error");
+                        response.Add("Message", "There is something happend while updating record");
+                    }
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "User Name is Already Existed For another Id");
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Add("status", "Error");
+                response.Add("Message", ex.Message);
+            }
+            return response;
+        }
     }
 }

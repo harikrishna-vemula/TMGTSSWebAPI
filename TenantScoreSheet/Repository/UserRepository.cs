@@ -45,7 +45,7 @@ namespace TenantScoreSheet.Repository
             Users objuser = new Users();
             try
             {
-                using (cmd = new SqlCommand("sp_GetUserLogin", sqlcon))
+                using (cmd = new SqlCommand("spGetUserLogin", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Email", Email);
@@ -89,7 +89,7 @@ namespace TenantScoreSheet.Repository
             List<Users> userslist = new();
             try
             {
-                using (cmd = new SqlCommand("sp_GetAllUsers", sqlcon))
+                using (cmd = new SqlCommand("spGetAllUsers", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     da = new SqlDataAdapter(cmd);
@@ -141,7 +141,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_InsertUser", sqlcon))
+                using (cmd = new SqlCommand("spInsertUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
@@ -186,7 +186,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_RegisterUser", sqlcon))
+                using (cmd = new SqlCommand("spRegisterUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
@@ -221,7 +221,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_UpdateUser", sqlcon))
+                using (cmd = new SqlCommand("spUpdateUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", objuser.Id);
@@ -325,7 +325,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_GetUserDetailsByEmail", sqlcon))
+                using (cmd = new SqlCommand("spGetUserDetailsByEmail", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", Id);

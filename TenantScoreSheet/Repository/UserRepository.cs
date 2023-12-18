@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using TenantScoreSheet.Models;
+using static TenantScoreSheet.Repository.SecurePassword;
 
 namespace TenantScoreSheet.Repository
 {
@@ -62,7 +63,7 @@ namespace TenantScoreSheet.Repository
                         objuser.Email = Convert.ToString(dr["Email"]);
                         objuser.RoleId = Convert.ToInt32(dr["RoleId"]);
                         objuser.RoleName = Convert.ToString(dr["RoleName"]);
-                        
+
                         objuser.Status = Convert.ToString(dr["Status"]);
                     }
                 }
@@ -77,6 +78,249 @@ namespace TenantScoreSheet.Repository
             }
 
             return objuser;
+        }
+
+        /// <summary>
+        /// GetAllUsers method retrieves a list of managers from the database by executing a stored procedure "sp_GetAllUsers".
+        /// </summary>
+        /// <returns>A list of Users objects representing the managers in the system. If no managers are found, an empty list is returned.</returns>
+        public List<Users> GetAllUsers()
+        {
+            List<Users> userslist = new();
+            try
+            {
+                using (cmd = new SqlCommand("sp_GetAllUsers", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Users Objuser = new()
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            UserName = Convert.ToString(row["UserName"]),
+                            RoleId = Convert.ToInt32(row["RoleId"]),
+                            FirstName = Convert.ToString(row["FirstName"]),
+                            LastName = Convert.ToString(row["LastName"]),
+                            MiddleName = Convert.ToString(row["MiddleName"]),
+                            Email = Convert.ToString(row["Email"]),
+                            PhoneNumber = Convert.ToString(row["PhoneNumber"]),
+                            Status = Convert.ToString(row["UserName"]),
+                            CreatedBy = Convert.ToString(row["CreatedBy"]),
+                            CreatedDate = Convert.ToDateTime(row["CreatedDate"])
+
+                        };
+
+                        userslist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return userslist;
+        }
+
+        /// <summary>
+        /// CreateUsers method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
+        public bool CreateUsers(Users objuser)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("sp_InsertUsers", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", objuser.MiddleName);
+                    cmd.Parameters.AddWithValue("@LastName", objuser.LastName);
+                    cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
+                    cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
+                    cmd.Parameters.AddWithValue("@Email", objuser.Email);
+                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
+                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
+                    cmd.Parameters.AddWithValue("@Status", objuser.Status);
+                    cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
+                     
+                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
+        }
+
+
+        /// <summary>
+        /// RegisterUsers method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
+        public bool RegisterUsers(Users objuser)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("sp_InsertUsers", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", objuser.MiddleName);
+                    cmd.Parameters.AddWithValue("@LastName", objuser.LastName);
+                    cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
+                    cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
+                    cmd.Parameters.AddWithValue("@Email", objuser.Email);
+                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
+                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
+                    cmd.Parameters.AddWithValue("@Status", objuser.Status);
+                    cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
+
+                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
+        }
+        /// <summary>
+        /// UpdateUsers method is used to update existing user records in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user to be updated.</param>
+        /// <returns>Returns a boolean value indicating whether the user update operation was successful or not.</returns>
+        public bool UpdateUsers(Users objuser)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("spUpdateUsers", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", objuser.Id);
+                    cmd.Parameters.AddWithValue("@FirstName", objuser.FirstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", objuser.MiddleName);
+                    cmd.Parameters.AddWithValue("@LastName", objuser.LastName);
+                    cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
+                    cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
+                    cmd.Parameters.AddWithValue("@Email", objuser.Email);
+                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
+                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
+                    cmd.Parameters.AddWithValue("@Status", objuser.Status);
+                    cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objuser.Id);
+                    
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
+        }
+
+
+
+        /// <summary>
+        /// EncryptPassword method is used to encrypt a given password using the SecurePassword class with BASE64 encoding.
+        /// </summary>
+        /// <param name="strPassword">The password to be encrypted.</param>
+        /// <returns>A string representing the encrypted password. If the input password is null or empty, an empty string is returned.</returns>
+        /// <exception cref="ArgumentNullException">ArgumentNullException exception is thrown, if the input password is null or empty.</exception>
+        public string EncryptPassword(string strPassword)
+        {
+            string strReturnPassword = string.Empty;
+
+            try
+            {
+                if (string.IsNullOrEmpty(strPassword))
+                {
+                    throw new ArgumentNullException("Password should not be null or empty...");
+                }
+                else
+                {
+                    strReturnPassword = SecurePassword.EncryptPassword(strPassword, SecurePassword.EncDecType.BASE64);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return strReturnPassword;
+        }
+
+
+        /// <summary>
+        /// DecryptPassword method is used to decrypt a given password using the SecurePassword class with BASE64 decoding.
+        /// </summary>
+        /// <param name="strPassword">The encrypted password to be decrypted.</param>
+        /// <returns>A string representing the decrypted password. If the input password is null or empty, an empty string is returned.</returns>
+        /// <exception cref="ArgumentNullException">ArgumentNullException exception is thrown, if the input password is null or empty.</exception>
+        public string DecryptPassword(string? strPassword)
+        {
+            string strReturnPassword;
+
+            try
+            {
+                if (string.IsNullOrEmpty(strPassword))
+                {
+                    throw new ArgumentNullException(null, "Password should not be null or empty...");
+                }
+                else
+                {
+                    strReturnPassword = SecurePassword.DecryptPassword(strPassword, SecurePassword.EncDecType.BASE64);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return strReturnPassword;
         }
     }
 

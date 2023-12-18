@@ -132,11 +132,11 @@ namespace TenantScoreSheet.Repository
         }
 
         /// <summary>
-        /// CreateUsers method is used to create new users in the system.
+        /// CreateUser method is used to create new users in the system.
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
         /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
-        public bool CreateUsers(Users objuser)
+        public bool CreateUser(Users objuser)
         {
             bool Result = false;
             try
@@ -177,16 +177,16 @@ namespace TenantScoreSheet.Repository
 
 
         /// <summary>
-        /// RegisterUsers method is used to create new users in the system.
+        /// RegisterUser method is used to create new users in the system.
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
         /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
-        public bool RegisterUsers(Users objuser)
+        public bool RegisterUser(Users objuser)
         {
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("sp_InsertUser", sqlcon))
+                using (cmd = new SqlCommand("sp_RegisterUser", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
@@ -212,11 +212,11 @@ namespace TenantScoreSheet.Repository
             return Result;
         }
         /// <summary>
-        /// UpdateUsers method is used to update existing user records in the system.
+        /// UpdateUser method is used to update existing user records in the system.
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user to be updated.</param>
         /// <returns>Returns a boolean value indicating whether the user update operation was successful or not.</returns>
-        public bool UpdateUsers(Users objuser)
+        public bool UpdateUser(Users objuser)
         {
             bool Result = false;
             try

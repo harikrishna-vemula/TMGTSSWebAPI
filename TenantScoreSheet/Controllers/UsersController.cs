@@ -70,8 +70,8 @@ namespace TenantScoreSheet.Controllers
         /// A dictionary containing the status and message of the operation.
         /// </returns>
         [HttpPost]
-        [Route("CreateUsers")]
-        public async Task<Dictionary<string, object>> CreateUsers([FromBody] Users value)
+        [Route("CreateUser")]
+        public async Task<Dictionary<string, object>> CreateUser([FromBody] Users value)
         {
             Dictionary<string, object> response = new();
             UserRepository userServiceRepository = new(configuration, connection);
@@ -83,7 +83,7 @@ namespace TenantScoreSheet.Controllers
 
                 if (userExisted == false)
                 {
-                    bool isUserExist = userServiceRepository.CreateUsers(value);
+                    bool isUserExist = userServiceRepository.CreateUser(value);
                     if (isUserExist == true)
                     {
                         response.Add("Status", "Success");
@@ -117,8 +117,8 @@ namespace TenantScoreSheet.Controllers
         /// A dictionary containing the status and message of the operation.
         /// </returns>
         [HttpPost]
-        [Route("UpdateUsers")]
-        public async Task<Dictionary<string, object>> UpdateUsers([FromBody] Users value)
+        [Route("UpdateUser")]
+        public async Task<Dictionary<string, object>> UpdateUser([FromBody] Users value)
         {
             Dictionary<string, object> response = new();
             UserRepository userServiceRepository = new(configuration, connection);
@@ -127,7 +127,7 @@ namespace TenantScoreSheet.Controllers
                 bool userExisted = await userServiceRepository.GetUsersDetailsByEmail(value.Id, value.Email);
                 if (userExisted == false)
                 {
-                    bool result = userServiceRepository.UpdateUsers(value);
+                    bool result = userServiceRepository.UpdateUser(value);
                     if (result == true)
                     {
                         response.Add("Status", "Success");

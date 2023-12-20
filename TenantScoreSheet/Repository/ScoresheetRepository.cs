@@ -87,6 +87,47 @@ namespace TenantScoreSheet.Repository
 
 
         /// <summary>
+        /// GetUserByEmail method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public async Task<bool> GetApplicantByName(string ApplicantName)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("spGetApplicantByName", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.Parameters.AddWithValue("@AppliacantName", ApplicantName);
+                    da = new SqlDataAdapter(cmd);
+                    await Task.Run(() => da.Fill(dt));
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    Result = true;
+                }
+                else
+                {
+                    Result = false;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+            }
+            finally
+            {
+                sqlcon.Close();
+            }
+
+            return Result;
+        }
+
+
+        /// <summary>
         /// CreateApplicant method is used to create new users in the system.
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>

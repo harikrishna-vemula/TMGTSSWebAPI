@@ -603,5 +603,31 @@ namespace TenantScoreSheet.Controllers
             }
             return response;
         }
+
+        /// <summary>
+        /// Retrieves a list of all score sheets specific to applicant from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetScroreSheetByApplicantId/{ApplicantId}/{TenantSerialNumber}")]
+        public List<Scoresheet> GetScroreSheetByApplicantId(int? ApplicantId, int? TenantSerialNumber)
+        {
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            List<Scoresheet> scoresheetList;
+            try
+            {
+                scoresheetList = scoresheetRepository.GetScroreSheetByApplicantId(ApplicantId, TenantSerialNumber);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return scoresheetList;
+        }
     }
 }

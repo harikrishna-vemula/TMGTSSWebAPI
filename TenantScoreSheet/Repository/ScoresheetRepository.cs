@@ -99,7 +99,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spGetApplicantByName", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    
+
                     cmd.Parameters.AddWithValue("@AppliacantName", ApplicantName);
                     da = new SqlDataAdapter(cmd);
                     await Task.Run(() => da.Fill(dt));
@@ -398,7 +398,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Class2MisdemeanersPoints", objCreditSummary.Class2MisdemeanersPoints);
                     cmd.Parameters.AddWithValue("@DepositApproved", objCreditSummary.DepositApproved);
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
-                   
+
 
                     cmd.Parameters.AddWithValue("@CreatedBy", objCreditSummary.Id);
                     sqlcon.Open();
@@ -523,7 +523,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Rerent", objLandLordReferences.Rerent);
                     cmd.Parameters.AddWithValue("@RerentPoints", objLandLordReferences.RerentPoints);
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objLandLordReferences.RentalHistoryLength);
-                    
+
 
                     cmd.Parameters.AddWithValue("@CreatedBy", objLandLordReferences.Id);
                     sqlcon.Open();
@@ -698,10 +698,10 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanion", objPets.NoOfLargeDogsCompanion);
                     cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanions", objPets.NoOfLargeDogsCompanions);
                     cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanionPoints", objPets.NoOfLargeDogsCompanionPoints);
-                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanion", objPets.NoOfSmallDogsCompanion); 
+                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanion", objPets.NoOfSmallDogsCompanion);
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
-                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints); 
-                    
+                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
+
                     cmd.Parameters.AddWithValue("@CreatedBy", objPets.Id);
                     sqlcon.Open();
 
@@ -734,27 +734,27 @@ namespace TenantScoreSheet.Repository
             {
                 using (cmd = new SqlCommand("spUpdatePets", sqlcon))
                 {
-                   
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@TenantId", objPets.TenantId);
-                        cmd.Parameters.AddWithValue("@PetApprovedLandlordReferance1", objPets.PetApprovedLandlordReferance1);
-                        cmd.Parameters.AddWithValue("@PetApprovedLandlordReferance2", objPets.PetApprovedLandlordReferance2);
-                        cmd.Parameters.AddWithValue("@NoOfCatsCompanion", objPets.NoOfCatsCompanion);
-                        cmd.Parameters.AddWithValue("@NoOfCatsCompanions", objPets.NoOfCatsCompanions);
-                        cmd.Parameters.AddWithValue("@NoOfCatsCompanionPoints", objPets.NoOfCatsCompanionPoints);
-                        cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanion", objPets.NoOfLargeDogsCompanion);
-                        cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanions", objPets.NoOfLargeDogsCompanions);
-                        cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanionPoints", objPets.NoOfLargeDogsCompanionPoints);
-                        cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanion", objPets.NoOfSmallDogsCompanion);
-                        cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
-                        cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                        cmd.Parameters.AddWithValue("@ModifiedBy", objPets.Id);
-                        sqlcon.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TenantId", objPets.TenantId);
+                    cmd.Parameters.AddWithValue("@PetApprovedLandlordReferance1", objPets.PetApprovedLandlordReferance1);
+                    cmd.Parameters.AddWithValue("@PetApprovedLandlordReferance2", objPets.PetApprovedLandlordReferance2);
+                    cmd.Parameters.AddWithValue("@NoOfCatsCompanion", objPets.NoOfCatsCompanion);
+                    cmd.Parameters.AddWithValue("@NoOfCatsCompanions", objPets.NoOfCatsCompanions);
+                    cmd.Parameters.AddWithValue("@NoOfCatsCompanionPoints", objPets.NoOfCatsCompanionPoints);
+                    cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanion", objPets.NoOfLargeDogsCompanion);
+                    cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanions", objPets.NoOfLargeDogsCompanions);
+                    cmd.Parameters.AddWithValue("@NoOfLargeDogsCompanionPoints", objPets.NoOfLargeDogsCompanionPoints);
+                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanion", objPets.NoOfSmallDogsCompanion);
+                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
+                    cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                        cmd.ExecuteNonQuery();
-                        Result = true;
-                    
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objPets.Id);
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+
                 }
             }
             catch (Exception)
@@ -791,7 +791,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@PetDeposit", objPointsSummary.PetDeposit);
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
-                   
+
                     cmd.Parameters.AddWithValue("@CreatedBy", objPointsSummary.Id);
                     sqlcon.Open();
 
@@ -853,6 +853,148 @@ namespace TenantScoreSheet.Repository
 
             }
             return Result;
+        }
+
+        /// <summary>
+        /// GetScroreSheetByApplicantId method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public List<Scoresheet> GetScroreSheetByApplicantId(int? ApplicantId, int? TenantSerialNumber)
+        {
+            List<Scoresheet> applicantslist = new();
+            try
+            {
+                using (cmd = new SqlCommand("spGetScroreSheetByApplicantId", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ApplicantId ", ApplicantId);
+                    cmd.Parameters.AddWithValue("@TenantSerialNumber", TenantSerialNumber);
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Scoresheet Objuser = new()
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            ApplicantName = Convert.ToString(row["ApplicantName"]),
+                            Property = Convert.ToString(row["Property"]),
+                            ApplicantTypeId = Convert.ToInt32(row["ApplicantTypeId"]),
+                            City = Convert.ToString(row["City"]),
+                            State = Convert.ToString(row["State"]),
+                            Zip = Convert.ToString(row["Zip"]),
+                            MonthlyRent = Convert.ToString(row["MonthlyRent"]),
+                            Section8Rent = Convert.ToString(row["Section8Rent"]),
+                            StandardDepositProperty = Convert.ToString(row["StandardDepositProperty"]),
+                            PetDeposit = Convert.ToString(row["PetDeposit"]),
+                            PropertyTypeId = Convert.ToInt32(row["PropertyTypeId"]),
+                            PropertyType = Convert.ToString(row["PropertyType"]),
+                            ApplicantType = Convert.ToString(row["ApplicantType"]),
+
+                            TenantId = Convert.ToInt32(row["TenantId"]),
+                            PaystubRecent = Convert.ToString(row["PaystubRecent"]),
+                            YTD_Earnings = Convert.ToString(row["YTD_Earnings"]),
+                            PaystubRecentMonthly = Convert.ToString(row["PaystubRecentMonthly"]),
+                            BankStatement = Convert.ToString(row["BankStatement"]),
+                            SecondPayStub = Convert.ToString(row["SecondPayStub"]),
+                            BankStatementMonthly = Convert.ToString(row["BankStatementMonthly"]),
+                            xRent = Convert.ToString(row["xRent"]),
+                            IncomeAdequate = Convert.ToString(row["IncomeAdequate"]),
+                            CreditLines = Convert.ToString(row["CreditLines"]),
+                            CreditScore = Convert.ToString(row["CreditScore"]),
+                            CreditScorePoints = Convert.ToString(row["CreditScorePoints"]),
+                            CreditScoreAvailable = Convert.ToString(row["CreditScoreAvailable"]),
+                            CreditScoreAvailablePoints = Convert.ToString(row["CreditScoreAvailablePoints"]),
+                            AccountPastDue60Days = Convert.ToString(row["AccountPastDue60Days"]),
+                            CollectionAccounts = Convert.ToString(row["CollectionAccounts"]),
+                            CollectionAccountsPoints = Convert.ToString(row["CollectionAccountsPoints"]),
+                            MedicalCollections = Convert.ToString(row["MedicalCollections"]),
+                            PropertyRelatedHousingRecord = Convert.ToString(row["PropertyRelatedHousingRecord"]),
+
+                            PropertyRelatedHousingRecordPoints = Convert.ToString(row["PropertyRelatedHousingRecordPoints"]),
+                            BankRuptyActive = Convert.ToString(row["BankRuptyActive"]),
+                            BankRuptyActivePoints = Convert.ToString(row["BankRuptyActivePoints"]),
+                            LiensRepossessions = Convert.ToString(row["LiensRepossessions"]),
+                            LiensRepossessionsPoints = Convert.ToString(row["LiensRepossessionsPoints"]),
+                            EvectionHistory = Convert.ToString(row["EvectionHistory"]),
+                            EvectionHistoryPoints = Convert.ToString(row["EvectionHistoryPoints"]),
+                            Class1Felonies = Convert.ToString(row["Class1Felonies"]),
+                            Class1FeloniesPoints = Convert.ToString(row["Class1FeloniesPoints"]),
+                            Class2Felonies = Convert.ToString(row["Class2Felonies"]),
+                            Class2FeloniesPoints = Convert.ToString(row["Class2FeloniesPoints"]),
+                            Class1Misdemeaners = Convert.ToString(row["Class1Misdemeaners"]),
+                            Class1MisdemeanersPoints = Convert.ToString(row["Class1MisdemeanersPoints"]),
+                            Class2Misdemeaners = Convert.ToString(row["Class2Misdemeaners"]),
+                            Class2MisdemeanersPoints = Convert.ToString(row["Class2MisdemeanersPoints"]),
+                            DepositApproved = Convert.ToString(row["DepositApproved"]),
+                            DepositToHold = Convert.ToString(row["DepositToHold"]),
+                            RentalReferance = Convert.ToString(row["RentalReferance"]),
+
+                            LandlordType = Convert.ToString(row["LandlordType"]),
+                            ProperNotice = Convert.ToString(row["ProperNotice"]),
+                            ProperNoticePoints = Convert.ToString(row["ProperNoticePoints"]),
+                            NSF = Convert.ToString(row["NSF"]),
+                            NSFPoints = Convert.ToString(row["NSFPoints"]),
+                            LatePayments = Convert.ToString(row["LatePayments"]),
+                            LatePaymentsPoints = Convert.ToString(row["LatePaymentsPoints"]),
+                            PaymentOrVacantNotices = Convert.ToString(row["PaymentOrVacantNotices"]),
+                            PaymentOrVacantNoticesPoints = Convert.ToString(row["PaymentOrVacantNoticesPoints"]),
+                            TendayComplyNotice = Convert.ToString(row["TendayComplyNotice"]),
+                            TendayComplyNoticePoints = Convert.ToString(row["TendayComplyNoticePoints"]),
+                            HOAViolations = Convert.ToString(row["HOAViolations"]),
+                            HOAViolationsPoints = Convert.ToString(row["HOAViolationsPoints"]),
+                            PropertyCleanliness = Convert.ToString(row["PropertyCleanliness"]),
+                            PropertyCleanlinessPoints = Convert.ToString(row["PropertyCleanlinessPoints"]),
+                            Pets = Convert.ToString(row["Pets"]),
+                            PetsPoints = Convert.ToString(row["PetsPoints"]),
+                            AdversePetReferance = Convert.ToString(row["AdversePetReferance"]),
+
+                            AdversePetReferancePoints = Convert.ToString(row["AdversePetReferancePoints"]),
+                            Rerent = Convert.ToString(row["Rerent"]),
+                            RerentPoints = Convert.ToString(row["RerentPoints"]),
+                            RentalHistoryLength = Convert.ToString(row["RentalHistoryLength"]),
+                            PetApprovedLandlordReferance1 = Convert.ToString(row["PetApprovedLandlordReferance1"]),
+                            PetApprovedLandlordReferance2 = Convert.ToString(row["PetApprovedLandlordReferance2"]),
+                            NoOfCatsCompanion = Convert.ToString(row["NoOfCatsCompanion"]),
+                            NoOfCatsCompanions = Convert.ToString(row["NoOfCatsCompanions"]),
+                            NoOfCatsCompanionPoints = Convert.ToString(row["NoOfCatsCompanionPoints"]),
+                            NoOfLargeDogsCompanion = Convert.ToString(row["NoOfLargeDogsCompanion"]),
+                            NoOfLargeDogsCompanions = Convert.ToString(row["NoOfLargeDogsCompanions"]),
+                            NoOfLargeDogsCompanionPoints = Convert.ToString(row["NoOfLargeDogsCompanionPoints"]),
+                            NoOfSmallDogsCompanion = Convert.ToString(row["NoOfSmallDogsCompanion"]),
+                            NoOfSmallDogsCompanions = Convert.ToString(row["NoOfSmallDogsCompanions"]),
+                            NoOfSmallDogsCompanionPoints = Convert.ToString(row["NoOfSmallDogsCompanionPoints"]),
+                            TotalPoints = Convert.ToString(row["TotalPoints"]),
+                            FinalApproval = Convert.ToString(row["FinalApproval"]),
+                            TotalDeposit = Convert.ToString(row["TotalDeposit"]),
+
+                            DepositToHoldpaid = Convert.ToString(row["DepositToHoldpaid"]),
+                            AdditionalDeposit = Convert.ToString(row["AdditionalDeposit"]),
+                            BalanceDepositDue = Convert.ToString(row["BalanceDepositDue"]),
+                            CreatedBy = Convert.ToString(row["CreatedBy"]),
+                            CreatedDate = Convert.ToDateTime(row["CreatedDate"]),
+                            ModifiedBy = Convert.ToString(row["ModifiedBy"]),
+                            ModifiedDate = Convert.ToDateTime(row["ModifiedDate"])
+
+                        };
+
+                        applicantslist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return applicantslist;
         }
     }
 }

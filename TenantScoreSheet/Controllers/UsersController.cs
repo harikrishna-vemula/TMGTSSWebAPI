@@ -41,10 +41,10 @@ namespace TenantScoreSheet.Controllers
                 {
                     responseDictionary.Add("Status", "Success");
                     responseDictionary.Add("Message", "Valid User Credential...");
-                    // responseDictionary.Add("token", securityToken);
+                   // responseDictionary.Add("token", securityToken);
                     responseDictionary.Add("users", loggedInUser);
                 }
-
+               
                 else
                 {
                     responseDictionary.Add("Status", "Error");
@@ -79,7 +79,7 @@ namespace TenantScoreSheet.Controllers
             {
                 bool userExisted = false;
 
-                userExisted = await userServiceRepository.GetUsersDetailsByEmail(0, value.Email);
+                userExisted = await userServiceRepository.GetUsersDetailsByEmail(0,value.Email);
 
                 if (userExisted == false)
                 {
@@ -107,25 +107,6 @@ namespace TenantScoreSheet.Controllers
                 response.Add("Message", ex.Message);
             }
             return response;
-        }
-        [HttpGet]
-        [Route("GetAllUsers")]
-        public async Task<List<Users>> GetAllUsers()
-        {
-            UserRepository userServiceRepository = new(configuration, connection);
-            List<Users> usersList = new();
-            try
-            {
-                usersList = await userServiceRepository.GetAllUsers();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-            }
-            return usersList;
         }
 
         /// <summary>
@@ -170,6 +151,105 @@ namespace TenantScoreSheet.Controllers
                 response.Add("Message", ex.Message);
             }
             return response;
+        }
+
+        /// <summary>
+        /// Retrieves a list of all users from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public List<Users> GetAllUsers()
+        {
+            UserRepository userServiceRepository = new(configuration, connection);
+            List<Users> usersList;
+            try
+            {
+                usersList = userServiceRepository.GetAllUsers();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return usersList;
+        }
+
+        /// <summary>
+        /// Creates a new user in the database.
+        /// </summary>
+        /// <param name="value">The Users object containing the details of the user to be created.</param>
+        /// <returns>
+        /// A dictionary containing the status and message of the operation.
+        /// </returns>
+        [HttpPost]
+        [Route("RegisterUser")]
+        public async Task<Dictionary<string, object>> RegisterUser([FromBody] Users value)
+        {
+            Dictionary<string, object> response = new();
+            UserRepository userServiceRepository = new(configuration, connection);
+            try
+            {
+                bool userExisted = false;
+
+                userExisted = await userServiceRepository.GetUsersDetailsByEmail(0, value.Email);
+
+                if (userExisted == false)
+                {
+                    bool isUserExist = userServiceRepository.RegisterUser(value);
+                    if (isUserExist == true)
+                    {
+                        response.Add("Status", "Success");
+                        response.Add("Message", "User is added successfully...");
+                    }
+                    else
+                    {
+                        response.Add("Status", "Error");
+                        response.Add("Message", "There is something happend while inserting record");
+                    }
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "User Name is Already Exists");
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Add("status", "Error");
+                response.Add("Message", ex.Message);
+            }
+            return response;
+        }
+
+        /// <summary>
+        /// Retrieves a list of all users from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetUserDetailsById/{Id}")]
+        public List<Users> GetUserDetailsById(int? Id)
+        {
+            UserRepository userServiceRepository = new(configuration, connection);
+            List<Users> usersList;
+            try
+            {
+                usersList = userServiceRepository.GetUserDetailsById(Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return usersList;
         }
     }
 }

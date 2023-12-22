@@ -84,94 +84,49 @@ namespace TenantScoreSheet.Repository
         /// GetAllUsers method retrieves a list of managers from the database by executing a stored procedure "sp_GetAllUsers".
         /// </summary>
         /// <returns>A list of Users objects representing the managers in the system. If no managers are found, an empty list is returned.</returns>
-        //public async task<List<Users>> GetAllUsers()
-        //{
-        //    List<Users> userslist = new();
-        //    try
-        //    {
-        //        using (cmd = new SqlCommand("spGetAllUsers", sqlcon))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            da = new SqlDataAdapter(cmd);
-        //            da.Fill(dt);
-        //        }
-
-        //        if (dt.Rows.Count > 0)
-        //        {
-        //            foreach (DataRow row in dt.Rows)
-        //            {
-        //                Users Objuser = new()
-        //                {
-        //                    Id = Convert.ToInt32(row["Id"]),
-        //                    UserName = Convert.ToString(row["UserName"]),
-        //                    RoleId = Convert.ToInt32(row["RoleId"]),
-        //                    FirstName = Convert.ToString(row["FirstName"]),
-        //                    LastName = Convert.ToString(row["LastName"]),
-        //                    MiddleName = Convert.ToString(row["MiddleName"]),
-        //                    Email = Convert.ToString(row["Email"]),
-        //                    PhoneNumber = Convert.ToString(row["PhoneNumber"]),
-        //                    Status = Convert.ToString(row["UserName"]),
-        //                    CreatedBy = Convert.ToString(row["CreatedBy"]),
-        //                    CreatedDate = Convert.ToDateTime(row["CreatedDate"])
-
-        //                };
-
-        //                userslist.Add(Objuser);
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //    finally { sqlcon.Close(); }
-
-        //    return userslist;
-        //}
-        public async Task<List<Users>> GetAllUsers()
+        public List<Users> GetAllUsers()
         {
             List<Users> userslist = new();
-
             try
             {
                 using (cmd = new SqlCommand("spGetAllUsers", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     da = new SqlDataAdapter(cmd);
-                    await Task.Run(() => da.Fill(dt));
+                    da.Fill(dt);
                 }
 
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
                     {
-                        Users Objuser = new Users();
-                        Objuser.Id = Convert.ToInt32(row["Id"]);
-                        Objuser.UserName = Convert.ToString(row["UserName"]);
-                        Objuser.Password = Convert.ToString(row["Password"]);
-                        Objuser.Email = Convert.ToString(row["Email"]);
-                        Objuser.PhoneNumber = Convert.ToString(row["PhoneNumber"]);
-                        //Objuser.Address = Convert.ToString(row["Address"]);
-                        Objuser.RoleId = Convert.ToInt32(row["RoleId"]);
-                        Objuser.RoleName = Convert.ToString(row["RoleName"]);
-                        Objuser.Status = Convert.ToString(row["Status"]);
-                        Objuser.CreatedBy = Convert.ToString(row["CreatedBy"]);
-                        //Objuser.CreatedDate = Convert.ToDateTime(row["CreatedDate"]);
-                        Objuser.CreatedDate = System.Convert.IsDBNull(row["CreatedDate"]) ? null : Convert.ToDateTime(row["CreatedDate"]);
-                        Objuser.ModifiedBy = Convert.ToString(row["ModifiedBy"]);
-                        Objuser.ModifiedDate = System.Convert.IsDBNull(row["ModifiedDate"]) ? null : Convert.ToDateTime(row["ModifiedDate"]);
+                        Users Objuser = new()
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            UserName = Convert.ToString(row["UserName"]),
+                            RoleId = Convert.ToInt32(row["RoleId"]),
+                            FirstName = Convert.ToString(row["FirstName"]),
+                            LastName = Convert.ToString(row["LastName"]),
+                            MiddleName = Convert.ToString(row["MiddleName"]),
+                            Email = Convert.ToString(row["Email"]),
+                            PhoneNumber = Convert.ToString(row["PhoneNumber"]),
+                            Status = Convert.ToString(row["UserName"]),
+                            CreatedBy = Convert.ToString(row["CreatedBy"]),
+                            CreatedDate = Convert.ToDateTime(row["CreatedDate"])
 
+                        };
 
                         userslist.Add(Objuser);
                     }
+
                 }
             }
             catch (Exception)
             {
+
                 throw;
             }
+            finally { sqlcon.Close(); }
 
             return userslist;
         }
@@ -195,14 +150,12 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
                     cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@Email", objuser.Email);
-                    // cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
-                    //cmd.Parameters.AddWithValue("@Address", objuser.Address);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", objuser.PhoneNumber);
-
+                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
+                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
-                    cmd.Parameters.AddWithValue("@RoleId", 1);
+                    cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -278,7 +231,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
                     cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@Email", objuser.Email);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", objuser.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
                     cmd.Parameters.AddWithValue("@Address", objuser.Address);
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
@@ -400,6 +353,58 @@ namespace TenantScoreSheet.Repository
             }
 
             return Result;
+        }
+
+        /// <summary>
+        /// GetUserDetailsById method retrieves a list of managers from the database by executing a stored procedure "sp_GetAllUsers".
+        /// </summary>
+        /// <returns>A list of Users objects representing the managers in the system. If no managers are found, an empty list is returned.</returns>
+        public List<Users> GetUserDetailsById(int? Id)
+        {
+            List<Users> userslist = new();
+            try
+            {
+                using (cmd = new SqlCommand("GetUserDetailsById", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Users Objuser = new()
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            UserName = Convert.ToString(row["UserName"]),
+                            RoleId = Convert.ToInt32(row["RoleId"]),
+                            FirstName = Convert.ToString(row["FirstName"]),
+                            LastName = Convert.ToString(row["LastName"]),
+                            MiddleName = Convert.ToString(row["MiddleName"]),
+                            Email = Convert.ToString(row["Email"]),
+                            PhoneNumber = Convert.ToString(row["PhoneNumber"]),
+                            Status = Convert.ToString(row["UserName"]),
+                            CreatedBy = Convert.ToString(row["CreatedBy"]),
+                            CreatedDate = Convert.ToDateTime(row["CreatedDate"])
+
+                        };
+
+                        userslist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return userslist;
         }
     }
 

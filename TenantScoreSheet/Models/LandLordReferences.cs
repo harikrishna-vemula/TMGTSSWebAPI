@@ -4,6 +4,8 @@
     {
         public int? Id { get; set; }
         public int? TenantId { get; set; }
+        public int? ApplicantId { get; set; }
+        public int? TenantSNo { get; set; }
         public bool? RentalReferance { get; set; }
         public int? LandlordType { get; set; }
         public bool? ProperNotice { get; set; }

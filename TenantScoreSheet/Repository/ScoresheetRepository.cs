@@ -131,10 +131,10 @@ namespace TenantScoreSheet.Repository
         /// CreateApplicant method is used to create new users in the system.
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
-        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
-        public bool CreateApplicant(ApplicantInfo objApplicant)
+        /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
+        public int CreateApplicant(ApplicantInfo objApplicant)
         {
-            bool Result = false;
+            bool Result = false;int Id = 0;
             try
             {
                 using (cmd = new SqlCommand("spInsertApplicant", sqlcon))
@@ -151,16 +151,19 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
                     cmd.Parameters.AddWithValue("@PetDeposit", objApplicant.PetDeposit);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
-                    cmd.Parameters.AddWithValue("@CreatedBy", objApplicant.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objApplicant.CreatedBy);
+                    cmd.Parameters.AddWithValue("@Id", objApplicant.Id);
+                    cmd.Parameters.Add("@Id", SqlDbType.Int);
+                    cmd.Parameters["@Id"].Direction = ParameterDirection.Output;
                     sqlcon.Open();
-
                     cmd.ExecuteNonQuery();
+                    Id = cmd.Parameters["@Id"].Value is DBNull ? 0 : Convert.ToInt32(cmd.Parameters["@Id"].Value);                    
                     Result = true;
                 }
             }
             catch (Exception)
             {
-                Result = false;
+                Id = 0;
                 throw;
             }
             finally
@@ -168,7 +171,44 @@ namespace TenantScoreSheet.Repository
                 sqlcon.Close();
 
             }
-            return Result;
+            return Id;
+        }
+
+        /// <summary>
+        /// CreateApplicant method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
+        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo,int? CreatedBy)
+        {
+            bool Result = false; int TenantId = 0;
+            try
+            {
+                using (cmd = new SqlCommand("spInsertTenantInfo", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ApplicantId", ApplicantId);
+                    cmd.Parameters.AddWithValue("@TenantSNo", TenantSNo);
+                    cmd.Parameters.AddWithValue("@CreatedBy", CreatedBy);
+                    cmd.Parameters.Add("@TenantId", SqlDbType.Int);
+                    cmd.Parameters["@TenantId"].Direction = ParameterDirection.Output;
+                    sqlcon.Open();
+                    cmd.ExecuteNonQuery();
+                    TenantId = cmd.Parameters["@TenantId"].Value is DBNull ? 0 : Convert.ToInt32(cmd.Parameters["@TenantId"].Value);
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                TenantId = 0;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return TenantId;
         }
 
         /// <summary>
@@ -195,7 +235,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
                     cmd.Parameters.AddWithValue("@PetDeposit", objApplicant.PetDeposit);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objApplicant.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objApplicant.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -284,7 +324,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spInsertIncomeVerfication", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@TenantId", objIncomeVerfication.TenantId);
+                    cmd.Parameters.AddWithValue("@TenantId", objIncomeVerfication.TenantId);                  
                     cmd.Parameters.AddWithValue("@PaystubRecent", objIncomeVerfication.PaystubRecent);
                     cmd.Parameters.AddWithValue("@YTD_Earnings", objIncomeVerfication.YTD_Earnings);
                     cmd.Parameters.AddWithValue("@PaystubRecentMonthly", objIncomeVerfication.PaystubRecentMonthly);
@@ -293,7 +333,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@BankStatementMonthly", objIncomeVerfication.BankStatementMonthly);
                     cmd.Parameters.AddWithValue("@xRent", objIncomeVerfication.xRent);
                     cmd.Parameters.AddWithValue("@IncomeAdequate", objIncomeVerfication.IncomeAdequate);
-                    cmd.Parameters.AddWithValue("@CreatedBy", objIncomeVerfication.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objIncomeVerfication.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -335,7 +375,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@BankStatementMonthly", objIncomeVerfication.BankStatementMonthly);
                     cmd.Parameters.AddWithValue("@xRent", objIncomeVerfication.xRent);
                     cmd.Parameters.AddWithValue("@IncomeAdequate", objIncomeVerfication.IncomeAdequate);
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objIncomeVerfication.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objIncomeVerfication.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -368,6 +408,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spInsertCreditSummary", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                 
                     cmd.Parameters.AddWithValue("@TenantId", objCreditSummary.TenantId);
                     cmd.Parameters.AddWithValue("@CreditLines", objCreditSummary.CreditLines);
                     cmd.Parameters.AddWithValue("@CreditScore", objCreditSummary.CreditScore);
@@ -400,7 +441,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objCreditSummary.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objCreditSummary.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -465,7 +506,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
 
 
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objCreditSummary.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objCreditSummary.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -525,7 +566,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objLandLordReferences.RentalHistoryLength);
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objLandLordReferences.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objLandLordReferences.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -585,7 +626,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objLandLordReferences.RentalHistoryLength);
 
 
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objLandLordReferences.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objLandLordReferences.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -621,7 +662,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objRentalHistory.TenantId);
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objRentalHistory.RentalHistoryLength);
-                    cmd.Parameters.AddWithValue("@CreatedBy", objRentalHistory.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objRentalHistory.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -656,7 +697,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objRentalHistory.TenantId);
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objRentalHistory.RentalHistoryLength);
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objRentalHistory.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objRentalHistory.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -702,7 +743,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objPets.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objPets.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -749,7 +790,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objPets.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objPets.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -792,7 +833,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objPointsSummary.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objPointsSummary.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -835,7 +876,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
 
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objPointsSummary.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objPointsSummary.ModifiedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();

@@ -4,6 +4,8 @@
     {
         public int? Id { get; set; }
         public int? TenantId { get; set; }
+        public int? ApplicantId { get; set; }
+        public int? TenantSNo { get; set; }
         public int? CreditLines { get; set; }
         public int? CreditScore { get; set; }
         public int? CreditScorePoints { get; set; }

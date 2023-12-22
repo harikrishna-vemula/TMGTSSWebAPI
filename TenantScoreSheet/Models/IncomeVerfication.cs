@@ -4,6 +4,8 @@
     {
         public int? Id { get; set; }
         public int? TenantId { get; set; }
+        public int? ApplicantId { get; set; }
+        public int? TenantSNo { get; set; }
         public int? PaystubRecent { get; set; }
         public int? YTD_Earnings { get; set; }
         public int? PaystubRecentMonthly { get; set; }

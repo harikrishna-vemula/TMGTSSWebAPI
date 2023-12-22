@@ -4,6 +4,8 @@
     {
         public int? Id { get; set; }
         public int? TenantId { get; set; }
+        public int? ApplicantId { get; set; }
+        public int? TenantSNo { get; set; }
         public int? PetApprovedLandlordReferance1 { get; set; }
         public int? PetApprovedLandlordReferance2 { get; set; }
         public bool? NoOfCatsCompanion { get; set; }

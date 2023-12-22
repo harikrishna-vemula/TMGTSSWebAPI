@@ -4,6 +4,8 @@
     {
         public int? Id { get; set; }
         public int? TenantId { get; set; }
+        public int? ApplicantId { get; set; }
+        public int? TenantSNo { get; set; }
 
         public int? TotalPoints { get; set; }
         public bool? FinalApproval { get; set; }

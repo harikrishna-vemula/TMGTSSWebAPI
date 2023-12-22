@@ -76,11 +76,12 @@ namespace TenantScoreSheet.Controllers
 
                 if (applicantExisted == false)
                 {
-                    bool isApplicantExist = scoresheetRepository.CreateApplicant(value);
-                    if (isApplicantExist == true)
+                    int Id = scoresheetRepository.CreateApplicant(value);
+                    if (Id > 0)
                     {
                         response.Add("Status", "Success");
                         response.Add("Message", "Applicant is added successfully...");
+                        response.Add("ApplicantionId", Id);
                     }
                     else
                     {
@@ -101,6 +102,8 @@ namespace TenantScoreSheet.Controllers
             }
             return response;
         }
+
+
 
         /// <summary>
         /// Updates an applicant.
@@ -165,20 +168,20 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-                
-             
-                    bool incomeVerificationExisted = scoresheetRepository.CreateIncomeVerfication(value);
-                    if (incomeVerificationExisted == true)
-                    {
-                        response.Add("Status", "Success");
-                        response.Add("Message", "Income Verfication is added successfully...");
-                    }
-                    else
-                    {
-                        response.Add("Status", "Error");
-                        response.Add("Message", "There is something happend while inserting record");
-                    }
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+                bool incomeVerificationExisted = scoresheetRepository.CreateIncomeVerfication(value);
+                if (incomeVerificationExisted == true)
+                {
+                    response.Add("Status", "Success");
+                    response.Add("Message", "Income Verfication is added successfully...");
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "There is something happend while inserting record");
+                }
+
             }
             catch (Exception ex)
             {
@@ -203,21 +206,22 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-                
 
-               
-                    bool isIncomeVerficationExist = scoresheetRepository.UpdateIncomeVerfication(value);
-                    if (isIncomeVerficationExist == true)
-                    {
-                        response.Add("Status", "Success");
-                        response.Add("Message", "Income Verfication is updated successfully...");
-                    }
-                    else
-                    {
-                        response.Add("Status", "Error");
-                        response.Add("Message", "There is something happend while inserting record");
-                    }
-              
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
+                bool isIncomeVerficationExist = scoresheetRepository.UpdateIncomeVerfication(value);
+                if (isIncomeVerficationExist == true)
+                {
+                    response.Add("Status", "Success");
+                    response.Add("Message", "Income Verfication is updated successfully...");
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "There is something happend while inserting record");
+                }
+
             }
             catch (Exception ex)
             {
@@ -242,8 +246,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-              
 
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
 
                 bool isCreditSummaryExist = scoresheetRepository.CreateCreditSummary(value);
                 if (isCreditSummaryExist == true)
@@ -281,9 +286,10 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-                
 
 
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
                 bool isCreditSummaryExist = scoresheetRepository.UpdateCreditSummary(value);
                 if (isCreditSummaryExist == true)
                 {
@@ -320,7 +326,8 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
 
                 bool isLandLordReferencesExist = scoresheetRepository.CreateLandLordReferences(value);
                 if (isLandLordReferencesExist == true)
@@ -358,7 +365,8 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-              
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
 
                 bool isLandLordReferencesExist = scoresheetRepository.UpdateLandLordReferences(value);
                 if (isLandLordReferencesExist == true)
@@ -396,7 +404,8 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
 
                 bool isRentalHistoryExist = scoresheetRepository.CreateRentalHistory(value);
                 if (isRentalHistoryExist == true)
@@ -434,7 +443,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
                 bool isRentalHistoryExist = scoresheetRepository.UpdateRentalHistory(value);
                 if (isRentalHistoryExist == true)
                 {
@@ -471,7 +482,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
                 bool isPetsExist = scoresheetRepository.CreatePets(value);
                 if (isPetsExist == true)
                 {
@@ -508,7 +521,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-               
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
                 bool isPetsExist = scoresheetRepository.UpdatePets(value);
                 if (isPetsExist == true)
                 {
@@ -545,7 +560,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-             
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
                 bool isPointsSummaryExist = scoresheetRepository.CreatePointsSummary(value);
                 if (isPointsSummaryExist == true)
                 {
@@ -582,7 +599,9 @@ namespace TenantScoreSheet.Controllers
             ScoresheetRepository scoresheetRepository = new(configuration, connection);
             try
             {
-              
+                int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, Convert.ToInt32(value.CreatedBy));
+                value.TenantId = TenantId;
+
                 bool isPointsSummaryExist = scoresheetRepository.UpdatePointsSummary(value);
                 if (isPointsSummaryExist == true)
                 {

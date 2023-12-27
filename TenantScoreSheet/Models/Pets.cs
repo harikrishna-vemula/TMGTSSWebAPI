@@ -16,8 +16,7 @@
         public int? NoOfLargeDogsCompanionPoints { get; set; }
         public bool? NoOfSmallDogsCompanion { get; set; }
         public int? NoOfSmallDogsCompanions { get; set; }
-        public int? NoOfSmallDogsCompanionPoints { get; set; }
-       
+        public int? NoOfSmallDogsCompanionPoints { get; set; }       
         public string? CreatedBy { get; set; } = string.Empty!;
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; } = string.Empty!;

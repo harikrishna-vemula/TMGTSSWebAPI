@@ -134,7 +134,7 @@ namespace TenantScoreSheet.Repository
         /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
         public int CreateApplicant(ApplicantInfo objApplicant)
         {
-            bool Result = false;int Id = 0;
+            bool Result = false; int Id = 0;
             try
             {
                 using (cmd = new SqlCommand("spInsertApplicant", sqlcon))
@@ -157,7 +157,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters["@Id"].Direction = ParameterDirection.Output;
                     sqlcon.Open();
                     cmd.ExecuteNonQuery();
-                    Id = cmd.Parameters["@Id"].Value is DBNull ? 0 : Convert.ToInt32(cmd.Parameters["@Id"].Value);                    
+                    Id = cmd.Parameters["@Id"].Value is DBNull ? 0 : Convert.ToInt32(cmd.Parameters["@Id"].Value);
                     Result = true;
                 }
             }
@@ -179,7 +179,7 @@ namespace TenantScoreSheet.Repository
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
         /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
-        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo,int? CreatedBy)
+        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo, int? CreatedBy)
         {
             bool Result = false; int TenantId = 0;
             try
@@ -324,7 +324,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spInsertIncomeVerfication", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@TenantId", objIncomeVerfication.TenantId);                  
+                    cmd.Parameters.AddWithValue("@TenantId", objIncomeVerfication.TenantId);
                     cmd.Parameters.AddWithValue("@PaystubRecent", objIncomeVerfication.PaystubRecent);
                     cmd.Parameters.AddWithValue("@YTD_Earnings", objIncomeVerfication.YTD_Earnings);
                     cmd.Parameters.AddWithValue("@PaystubRecentMonthly", objIncomeVerfication.PaystubRecentMonthly);
@@ -408,7 +408,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spInsertCreditSummary", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                 
+
                     cmd.Parameters.AddWithValue("@TenantId", objCreditSummary.TenantId);
                     cmd.Parameters.AddWithValue("@CreditLines", objCreditSummary.CreditLines);
                     cmd.Parameters.AddWithValue("@CreditScore", objCreditSummary.CreditScore);
@@ -1017,9 +1017,9 @@ namespace TenantScoreSheet.Repository
                             AdditionalDeposit = Convert.ToString(row["AdditionalDeposit"]),
                             BalanceDepositDue = Convert.ToString(row["BalanceDepositDue"]),
                             CreatedBy = Convert.ToString(row["CreatedBy"]),
-                            CreatedDate = Convert.ToDateTime(row["CreatedDate"]),
+                            CreatedDate = row["CreatedDate"] == null ? null : Convert.ToDateTime(row["CreatedDate"]),
                             ModifiedBy = Convert.ToString(row["ModifiedBy"]),
-                            ModifiedDate = Convert.ToDateTime(row["ModifiedDate"])
+                            ModifiedDate = row["ModifiedDate"] == null ? null : Convert.ToDateTime(row["ModifiedDate"])
 
                         };
 
@@ -1036,6 +1036,183 @@ namespace TenantScoreSheet.Repository
             finally { sqlcon.Close(); }
 
             return applicantslist;
+        }
+
+
+        /// <summary>
+        /// CreateCoverSheet method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objCoversheet">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
+        public int CreateCoverSheet(Coversheet objCoversheet)
+        {
+            bool Result = false; int TenantId = 0;
+            try
+            {
+                using (cmd = new SqlCommand("spInsertCoverSheet", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
+                    cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
+                    cmd.Parameters.AddWithValue("@City", objCoversheet.City);
+                    cmd.Parameters.AddWithValue("@State", objCoversheet.State);
+                    cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
+                    cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
+                    cmd.Parameters.AddWithValue("@RentReadyDate", objCoversheet.RentReadyDate);
+                    cmd.Parameters.AddWithValue("@DepositPaidDate", objCoversheet.DepositPaidDate);
+                    cmd.Parameters.AddWithValue("@RentResponsibleDate", objCoversheet.RentResponsibleDate);
+                    cmd.Parameters.AddWithValue("@AgreementType", objCoversheet.AgreementType);
+                    cmd.Parameters.AddWithValue("@QCDate", objCoversheet.QCDate);
+                    cmd.Parameters.AddWithValue("@SigningDate", objCoversheet.SigningDate);
+                    cmd.Parameters.AddWithValue("@SigningTime", objCoversheet.SigningTime);
+                    cmd.Parameters.AddWithValue("@WithWhom", objCoversheet.WithWhom);
+                    cmd.Parameters.AddWithValue("@OtherTerms", objCoversheet.OtherTerms);
+                    cmd.Parameters.AddWithValue("@ListPaidUtilities", objCoversheet.ListPaidUtilities);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge11", objCoversheet.OtherMonthlyCharge11);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge12", objCoversheet.OtherMonthlyCharge12);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge21", objCoversheet.OtherMonthlyCharge21);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge22", objCoversheet.OtherMonthlyCharge22);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge31", objCoversheet.OtherMonthlyCharge31);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge32", objCoversheet.OtherMonthlyCharge32);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge41", objCoversheet.OtherMonthlyCharge41);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge42", objCoversheet.OtherMonthlyCharge42);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge1", objCoversheet.OtherMoveinCharge1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid1", objCoversheet.OtherMoveinChargePaid1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge2", objCoversheet.OtherMoveinCharge2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid2", objCoversheet.OtherMoveinChargePaid2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge3", objCoversheet.OtherMoveinCharge3);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid3", objCoversheet.OtherMoveinChargePaid3);
+                    cmd.Parameters.AddWithValue("@RubsMoveinCharge", objCoversheet.RubsMoveinCharge);
+                    cmd.Parameters.AddWithValue("@RubsMoveinChargePaid", objCoversheet.RubsMoveinChargePaid);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningCharge", objCoversheet.PrepaidCleaningCharge);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningPaid", objCoversheet.PrepaidCleaningPaid);
+                    cmd.Parameters.AddWithValue("@SecurityDepositCharge", objCoversheet.SecurityDepositCharge);
+                    cmd.Parameters.AddWithValue("@SecurityDepositPaid", objCoversheet.SecurityDepositPaid);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeeCharge", objCoversheet.NonRefProcessingFeeCharge);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeePaid", objCoversheet.NonRefProcessingFeePaid);
+                    cmd.Parameters.AddWithValue("@PetDepositCharge", objCoversheet.PetDepositCharge);
+                    cmd.Parameters.AddWithValue("@PetDepositPaid", objCoversheet.PetDepositPaid);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeeCharge", objCoversheet.PetNonRefFeeCharge);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeePaid", objCoversheet.PetNonRefFeePaid);
+                    cmd.Parameters.AddWithValue("@AdditionDepositCharge", objCoversheet.AdditionDepositCharge);
+                    cmd.Parameters.AddWithValue("@AdditionDepositPaid", objCoversheet.AdditionDepositPaid);
+                    cmd.Parameters.AddWithValue("@SubTotal", objCoversheet.SubTotal);
+                    cmd.Parameters.AddWithValue("@Paid", objCoversheet.Paid);
+                    cmd.Parameters.AddWithValue("@DueatMoveinKeyPickup", objCoversheet.DueatMoveinKeyPickup);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objCoversheet.CreatedBy);
+
+                    sqlcon.Open();
+                    cmd.ExecuteNonQuery();
+
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                TenantId = 0;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return TenantId;
+        }
+
+
+        /// <summary>
+        /// UpdatePets method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
+        public bool UpdateCoverSheet(Coversheet objCoversheet)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("spUpdateCoverSheet", sqlcon))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", objCoversheet.Id);
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
+                    cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
+                    cmd.Parameters.AddWithValue("@City", objCoversheet.City);
+                    cmd.Parameters.AddWithValue("@State", objCoversheet.State);
+                    cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
+                    cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
+                    cmd.Parameters.AddWithValue("@RentReadyDate", objCoversheet.RentReadyDate);
+                    cmd.Parameters.AddWithValue("@DepositPaidDate", objCoversheet.DepositPaidDate);
+                    cmd.Parameters.AddWithValue("@RentResponsibleDate", objCoversheet.RentResponsibleDate);
+                    cmd.Parameters.AddWithValue("@AgreementType", objCoversheet.AgreementType);
+                    cmd.Parameters.AddWithValue("@QCDate", objCoversheet.QCDate);
+                    cmd.Parameters.AddWithValue("@SigningDate", objCoversheet.SigningDate);
+                    cmd.Parameters.AddWithValue("@SigningTime", objCoversheet.SigningTime);
+                    cmd.Parameters.AddWithValue("@WithWhom", objCoversheet.WithWhom);
+                    cmd.Parameters.AddWithValue("@OtherTerms", objCoversheet.OtherTerms);
+                    cmd.Parameters.AddWithValue("@ListPaidUtilities", objCoversheet.ListPaidUtilities);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge11", objCoversheet.OtherMonthlyCharge11);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge12", objCoversheet.OtherMonthlyCharge12);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge21", objCoversheet.OtherMonthlyCharge21);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge22", objCoversheet.OtherMonthlyCharge22);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge31", objCoversheet.OtherMonthlyCharge31);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge32", objCoversheet.OtherMonthlyCharge32);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge41", objCoversheet.OtherMonthlyCharge41);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge42", objCoversheet.OtherMonthlyCharge42);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge1", objCoversheet.OtherMoveinCharge1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid1", objCoversheet.OtherMoveinChargePaid1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge2", objCoversheet.OtherMoveinCharge2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid2", objCoversheet.OtherMoveinChargePaid2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge3", objCoversheet.OtherMoveinCharge3);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid3", objCoversheet.OtherMoveinChargePaid3);
+                    cmd.Parameters.AddWithValue("@RubsMoveinCharge", objCoversheet.RubsMoveinCharge);
+                    cmd.Parameters.AddWithValue("@RubsMoveinChargePaid", objCoversheet.RubsMoveinChargePaid);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningCharge", objCoversheet.PrepaidCleaningCharge);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningPaid", objCoversheet.PrepaidCleaningPaid);
+                    cmd.Parameters.AddWithValue("@SecurityDepositCharge", objCoversheet.SecurityDepositCharge);
+                    cmd.Parameters.AddWithValue("@SecurityDepositPaid", objCoversheet.SecurityDepositPaid);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeeCharge", objCoversheet.NonRefProcessingFeeCharge);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeePaid", objCoversheet.NonRefProcessingFeePaid);
+                    cmd.Parameters.AddWithValue("@PetDepositCharge", objCoversheet.PetDepositCharge);
+                    cmd.Parameters.AddWithValue("@PetDepositPaid", objCoversheet.PetDepositPaid);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeeCharge", objCoversheet.PetNonRefFeeCharge);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeePaid", objCoversheet.PetNonRefFeePaid);
+                    cmd.Parameters.AddWithValue("@AdditionDepositCharge", objCoversheet.AdditionDepositCharge);
+                    cmd.Parameters.AddWithValue("@AdditionDepositPaid", objCoversheet.AdditionDepositPaid);
+                    cmd.Parameters.AddWithValue("@SubTotal", objCoversheet.SubTotal);
+                    cmd.Parameters.AddWithValue("@Paid", objCoversheet.Paid);
+                    cmd.Parameters.AddWithValue("@DueatMoveinKeyPickup", objCoversheet.DueatMoveinKeyPickup);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objCoversheet.ModifiedBy);
+
+                    sqlcon.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
         }
     }
 }

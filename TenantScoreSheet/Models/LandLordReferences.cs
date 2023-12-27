@@ -28,8 +28,7 @@
         public int? AdversePetReferancePoints { get; set; }
         public bool? Rerent { get; set; }
         public int? RerentPoints { get; set; }
-        public bool? RentalHistoryLength { get; set; }
-      
+        public bool? RentalHistoryLength { get; set; }      
         public string? CreatedBy { get; set; } = string.Empty!;
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; } = string.Empty!;

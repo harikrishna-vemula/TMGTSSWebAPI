@@ -124,9 +124,9 @@ namespace TenantScoreSheet.Controllers
             UserRepository userServiceRepository = new(configuration, connection);
             try
             {
-                bool userExisted = await userServiceRepository.GetUsersDetailsByEmail(value.Id, value.Email);
-                if (userExisted == false)
-                {
+                //bool userExisted = await userServiceRepository.GetUsersDetailsByEmail(value.Id, value.Email);
+                //if (userExisted == false)
+                //{
                     bool result = userServiceRepository.UpdateUser(value);
                     if (result == true)
                     {
@@ -138,12 +138,12 @@ namespace TenantScoreSheet.Controllers
                         response.Add("Status", "Error");
                         response.Add("Message", "There is something happend while updating record");
                     }
-                }
-                else
-                {
-                    response.Add("Status", "Error");
-                    response.Add("Message", "User Name is Already Existed For another Id");
-                }
+                //}
+                //else
+                //{
+                //    response.Add("Status", "Error");
+                //    response.Add("Message", "User Name is Already Existed For another Id");
+                //}
             }
             catch (Exception ex)
             {

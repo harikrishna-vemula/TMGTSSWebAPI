@@ -45,27 +45,49 @@
         public string? RentalReferance { get; set; }
         public string? LandlordType { get; set; }
 
-        public string? ProperNotice { get; set; }
-        public string? ProperNoticePoints { get; set; }
-        public string? NSF { get; set; }
-        public string? NSFPoints { get; set; }
-        public string? LatePayments { get; set; }
-        public string? LatePaymentsPoints { get; set; }
-        public string? PaymentOrVacantNotices { get; set; }
-        public string? PaymentOrVacantNoticesPoints { get; set; }
-        public string? TendayComplyNotice { get; set; }
-        public string? TendayComplyNoticePoints { get; set; }
-        public string? HOAViolations { get; set; }
-        public string? HOAViolationsPoints { get; set; }
-        public string? PropertyCleanliness { get; set; }
+        public string? LL1ProperNotice { get; set; }
+        public string? LL1ProperNoticePoints { get; set; }
+        public string? LL1NSF { get; set; }
+        public string? LL1NSFPoints { get; set; }
+        public string? LL1LatePayments { get; set; }
+        public string? LL1LatePaymentsPoints { get; set; }
+        public string? LL1PaymentOrVacantNotices { get; set; }
+        public string? LL1PaymentOrVacantNoticesPoints { get; set; }
+        public string? LL1TendayComplyNotice { get; set; }
+        public string? LL1TendayComplyNoticePoints { get; set; }
+        public string? LL1HOAViolations { get; set; }
+        public string? LL1HOAViolationsPoints { get; set; }
+        public string? LL1PropertyCleanliness { get; set; }
 
-        public string? PropertyCleanlinessPoints { get; set; }
-        public string? Pets { get; set; }
-        public string? PetsPoints { get; set; }
-        public string? AdversePetReferance { get; set; }
-        public string? AdversePetReferancePoints { get; set; }
-        public string? Rerent { get; set; }
-        public string? RerentPoints { get; set; }
+        public string? LL1PropertyCleanlinessPoints { get; set; }
+        public string? LL1Pets { get; set; }
+        public string? LL1PetsPoints { get; set; }
+        public string? LL1AdversePetReferance { get; set; }
+        public string? LL1AdversePetReferancePoints { get; set; }
+        public string? LL1Rerent { get; set; }
+        public string? LL1RerentPoints { get; set; }
+
+        public string? LL2ProperNotice { get; set; }
+        public string? LL2ProperNoticePoints { get; set; }
+        public string? LL2NSF { get; set; }
+        public string? LL2NSFPoints { get; set; }
+        public string? LL2LatePayments { get; set; }
+        public string? LL2LatePaymentsPoints { get; set; }
+        public string? LL2PaymentOrVacantNotices { get; set; }
+        public string? LL2PaymentOrVacantNoticesPoints { get; set; }
+        public string? LL2TendayComplyNotice { get; set; }
+        public string? LL2TendayComplyNoticePoints { get; set; }
+        public string? LL2HOAViolations { get; set; }
+        public string? LL2HOAViolationsPoints { get; set; }
+        public string? LL2PropertyCleanliness { get; set; }
+
+        public string? LL2PropertyCleanlinessPoints { get; set; }
+        public string? LL2Pets { get; set; }
+        public string? LL2PetsPoints { get; set; }
+        public string? LL2AdversePetReferance { get; set; }
+        public string? LL2AdversePetReferancePoints { get; set; }
+        public string? LL2Rerent { get; set; }
+        public string? LL2RerentPoints { get; set; }
         public string? RentalHistoryLength { get; set; }
         public string? PetApprovedLandlordReferance1 { get; set; }
 

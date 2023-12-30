@@ -11,8 +11,7 @@
         public string? FirstName { get; set; } = string.Empty!;
         public string? LastName { get; set; } = string.Empty!;
         public string? MiddleName { get; set; } = string.Empty!;
-
-        public string? PhoneNumber { get; set; } = string.Empty!;
+      
         public string? TwoFactorEnabled { get; set; } = string.Empty!;
         public string? CreatedBy { get; set; } = string.Empty!;
         public DateTime? CreatedDate { get; set; }

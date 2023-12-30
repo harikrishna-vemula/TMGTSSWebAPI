@@ -100,21 +100,22 @@ namespace TenantScoreSheet.Repository
                 {
                     foreach (DataRow row in dt.Rows)
                     {
-                        Users Objuser = new()
-                        {
-                            Id = Convert.ToInt32(row["Id"]),
-                            UserName = Convert.ToString(row["UserName"]),
-                            RoleId = Convert.ToInt32(row["RoleId"]),
-                            FirstName = Convert.ToString(row["FirstName"]),
-                            LastName = Convert.ToString(row["LastName"]),
-                            MiddleName = Convert.ToString(row["MiddleName"]),
-                            Email = Convert.ToString(row["Email"]),
-                            PhoneNumber = Convert.ToString(row["PhoneNumber"]),
-                            Status = Convert.ToString(row["UserName"]),
-                            CreatedBy = Convert.ToString(row["CreatedBy"]),
-                            CreatedDate = Convert.ToDateTime(row["CreatedDate"])
+                        Users Objuser = new Users();
+                        Objuser.Id = Convert.ToInt32(row["Id"]);
+                        Objuser.UserName = Convert.ToString(row["UserName"]);
+                        Objuser.Password = Convert.ToString(row["Password"]);
+                        Objuser.Email = Convert.ToString(row["Email"]);
+                        Objuser.Phone = Convert.ToString(row["PhoneNumber"]);
+                        //Objuser.Address = Convert.ToString(row["Address"]);
+                        Objuser.RoleId = Convert.ToInt32(row["RoleId"]);
+                        Objuser.RoleName = Convert.ToString(row["RoleName"]);
+                        Objuser.Status = Convert.ToString(row["Status"]);
+                        Objuser.CreatedBy = Convert.ToString(row["CreatedBy"]);
+                        //Objuser.CreatedDate = Convert.ToDateTime(row["CreatedDate"]);
+                        Objuser.CreatedDate = System.Convert.IsDBNull(row["CreatedDate"]) ? null : Convert.ToDateTime(row["CreatedDate"]);
+                        Objuser.ModifiedBy = Convert.ToString(row["ModifiedBy"]);
+                        Objuser.ModifiedDate = System.Convert.IsDBNull(row["ModifiedDate"]) ? null : Convert.ToDateTime(row["ModifiedDate"]);
 
-                        };
 
                         userslist.Add(Objuser);
                     }
@@ -150,12 +151,14 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@UserName", objuser.UserName);
                     cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@Email", objuser.Email);
+                    // cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
+                    //cmd.Parameters.AddWithValue("@Address", objuser.Address);
                     cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
-                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
+
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.Id);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objuser.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -232,10 +235,10 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Password", EncryptPassword(objuser.Password));
                     cmd.Parameters.AddWithValue("@Email", objuser.Email);
                     cmd.Parameters.AddWithValue("@Phone", objuser.Phone);
-                    cmd.Parameters.AddWithValue("@Address", objuser.Address);
+                    //cmd.Parameters.AddWithValue("@Address", objuser.Address);
                     cmd.Parameters.AddWithValue("@Status", objuser.Status);
                     cmd.Parameters.AddWithValue("@RoleId", objuser.RoleId);
-                    cmd.Parameters.AddWithValue("@ModifiedBy", objuser.Id);
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objuser.ModifiedBy);
 
                     sqlcon.Open();
 
@@ -364,7 +367,7 @@ namespace TenantScoreSheet.Repository
             List<Users> userslist = new();
             try
             {
-                using (cmd = new SqlCommand("GetUserDetailsById", sqlcon))
+                using (cmd = new SqlCommand("spGetUserDetailsById", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", Id);
@@ -385,11 +388,12 @@ namespace TenantScoreSheet.Repository
                             LastName = Convert.ToString(row["LastName"]),
                             MiddleName = Convert.ToString(row["MiddleName"]),
                             Email = Convert.ToString(row["Email"]),
-                            PhoneNumber = Convert.ToString(row["PhoneNumber"]),
-                            Status = Convert.ToString(row["UserName"]),
+                            Phone = Convert.ToString(row["PhoneNumber"]),
+                            Status = Convert.ToString(row["Status"]),
                             CreatedBy = Convert.ToString(row["CreatedBy"]),
-                            CreatedDate = Convert.ToDateTime(row["CreatedDate"])
-
+                            Password= DecryptPassword(Convert.ToString(row["Password"])),
+                            CreatedDate = System.Convert.IsDBNull(row["CreatedDate"]) ? null : Convert.ToDateTime(row["CreatedDate"]),
+                            ModifiedDate = System.Convert.IsDBNull(row["ModifiedDate"]) ? null : Convert.ToDateTime(row["ModifiedDate"])
                         };
 
                         userslist.Add(Objuser);

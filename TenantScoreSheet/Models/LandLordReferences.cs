@@ -16,8 +16,8 @@
         public int? LL1LatePaymentsPoints { get; set; }
         public int? LL1PaymentOrVacantNotices { get; set; }
         public int? LL1PaymentOrVacantNoticesPoints { get; set; }
-        public int? LL110dayComplyNotice { get; set; }
-        public int? LL110dayComplyNoticePoints { get; set; }
+        public int? lL1TendayComplyNotice { get; set; }
+        public int? lL1TendayComplyNoticePoints { get; set; }
         public int? LL1HOAViolations { get; set; }
         public int? LL1HOAViolationsPoints { get; set; }
         public int? LL1PropertyCleanliness { get; set; }
@@ -39,8 +39,8 @@
         public int? LL2LatePaymentsPoints { get; set; }
         public int? LL2PaymentOrVacantNotices { get; set; }
         public int? LL2PaymentOrVacantNoticesPoints { get; set; }
-        public int? LL210dayComplyNotice { get; set; }
-        public int? LL210dayComplyNoticePoints { get; set; }
+        public int? lL2TendayComplyNotice { get; set; }
+        public int? lL2TendayComplyNoticePoints { get; set; }
         public int? LL2HOAViolations { get; set; }
         public int? LL2HOAViolationsPoints { get; set; }
         public int? LL2PropertyCleanliness { get; set; }

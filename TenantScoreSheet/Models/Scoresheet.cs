@@ -13,39 +13,42 @@
         public string? SecondPayStub { get; set; }
         public string? BankStatementMonthly { get; set; }
         public string? xRent { get; set; }
-        public string? IncomeAdequate { get; set; }
-        public string? CreditLines { get; set; }
+        public bool? IncomeAdequate { get; set; }
+        public bool? CreditLines { get; set; }
         public string? CreditScore { get; set; }
         public string? CreditScorePoints { get; set; }
-        public string? CreditScoreAvailable { get; set; }
+        public bool? CreditScoreAvailable { get; set; }
         public string? CreditScoreAvailablePoints { get; set; }
         public string? AccountPastDue60Days { get; set; }
         public string? CollectionAccounts { get; set; }
         public string? CollectionAccountsPoints { get; set; }
         public string? MedicalCollections { get; set; }
-        public string? PropertyRelatedHousingRecord { get; set; }
+        public bool? PropertyRelatedHousingRecord { get; set; }
         public string? PropertyRelatedHousingRecordPoints { get; set; }
-        public string? BankRuptyActive { get; set; }
-        public string? BankRuptyActivePoints { get; set; }
-        public string? LiensRepossessions { get; set; }
+
+        public int? Bankruptcy { get; set; }
+        public int? BankruptcyPoints { get; set; }
+        public bool? BankRuptyActive { get; set; }
+        public int? BankRuptyActivePoints { get; set; }
+        public DateTime? LiensRepossessions { get; set; }
         public string? LiensRepossessionsPoints { get; set; }
-        public string? EvectionHistory { get; set; }
+        public DateTime? EvectionHistory { get; set; }
 
         public string? EvectionHistoryPoints { get; set; }
-        public string? Class1Felonies { get; set; }
+        public bool? Class1Felonies { get; set; }
         public string? Class1FeloniesPoints { get; set; }
-        public string? Class2Felonies { get; set; }
+        public DateTime? Class2Felonies { get; set; }
         public string? Class2FeloniesPoints { get; set; }
-        public string? Class1Misdemeaners { get; set; }
+        public DateTime? Class1Misdemeaners { get; set; }
         public string? Class1MisdemeanersPoints { get; set; }
-        public string? Class2Misdemeaners { get; set; }
+        public DateTime? Class2Misdemeaners { get; set; }
         public string? Class2MisdemeanersPoints { get; set; }
-        public string? DepositApproved { get; set; }
+        public bool? DepositApproved { get; set; }
         public string? DepositToHold { get; set; }
-        public string? RentalReferance { get; set; }
+        public bool? RentalReferance { get; set; }
         public string? LandlordType { get; set; }
 
-        public string? LL1ProperNotice { get; set; }
+        public bool? LL1ProperNotice { get; set; }
         public string? LL1ProperNoticePoints { get; set; }
         public string? LL1NSF { get; set; }
         public string? LL1NSFPoints { get; set; }
@@ -60,14 +63,14 @@
         public string? LL1PropertyCleanliness { get; set; }
 
         public string? LL1PropertyCleanlinessPoints { get; set; }
-        public string? LL1Pets { get; set; }
+        public bool? LL1Pets { get; set; }
         public string? LL1PetsPoints { get; set; }
-        public string? LL1AdversePetReferance { get; set; }
+        public bool? LL1AdversePetReferance { get; set; }
         public string? LL1AdversePetReferancePoints { get; set; }
-        public string? LL1Rerent { get; set; }
+        public bool? LL1Rerent { get; set; }
         public string? LL1RerentPoints { get; set; }
 
-        public string? LL2ProperNotice { get; set; }
+        public bool? LL2ProperNotice { get; set; }
         public string? LL2ProperNoticePoints { get; set; }
         public string? LL2NSF { get; set; }
         public string? LL2NSFPoints { get; set; }
@@ -82,28 +85,28 @@
         public string? LL2PropertyCleanliness { get; set; }
 
         public string? LL2PropertyCleanlinessPoints { get; set; }
-        public string? LL2Pets { get; set; }
+        public bool? LL2Pets { get; set; }
         public string? LL2PetsPoints { get; set; }
-        public string? LL2AdversePetReferance { get; set; }
+        public bool? LL2AdversePetReferance { get; set; }
         public string? LL2AdversePetReferancePoints { get; set; }
-        public string? LL2Rerent { get; set; }
+        public bool? LL2Rerent { get; set; }
         public string? LL2RerentPoints { get; set; }
-        public string? RentalHistoryLength { get; set; }
+        public bool? RentalHistoryLength { get; set; }
         public string? PetApprovedLandlordReferance1 { get; set; }
 
         public string? PetApprovedLandlordReferance2 { get; set; }
-        public string? NoOfCatsCompanion { get; set; }
+        public bool? NoOfCatsCompanion { get; set; }
         public string? NoOfCatsCompanions { get; set; }
         public string? NoOfCatsCompanionPoints { get; set; }
-        public string? NoOfLargeDogsCompanion { get; set; }
+        public bool? NoOfLargeDogsCompanion { get; set; }
 
         public string? NoOfLargeDogsCompanions { get; set; }
         public string? NoOfLargeDogsCompanionPoints { get; set; }
-        public string? NoOfSmallDogsCompanion { get; set; }
+        public bool? NoOfSmallDogsCompanion { get; set; }
         public string? NoOfSmallDogsCompanions { get; set; }
         public string? NoOfSmallDogsCompanionPoints { get; set; }
         public string? TotalPoints { get; set; }
-        public string? FinalApproval { get; set; }
+        public bool? FinalApproval { get; set; }
         public string? TotalDeposit { get; set; }
         public string? DepositToHoldpaid { get; set; }
 

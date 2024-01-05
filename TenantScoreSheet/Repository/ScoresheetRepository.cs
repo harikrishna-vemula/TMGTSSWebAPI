@@ -156,7 +156,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Section8Rent", objApplicant.Section8Rent);
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     cmd.Parameters.AddWithValue("@Id", objApplicant.Id);
                     //cmd.Parameters.Add("@Id", SqlDbType.Int);
                     cmd.Parameters["@Id"].Direction = ParameterDirection.Output;
@@ -327,7 +327,7 @@ namespace TenantScoreSheet.Repository
             bool Result = false;
             try
             {
-                using (cmd = new SqlCommand("spInsertIncomeVerfication", sqlcon))
+                using (cmd = new SqlCommand("spInsertIncomeVerification", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objIncomeVerfication.TenantId);
@@ -335,11 +335,11 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@YTD_Earnings", objIncomeVerfication.YTD_Earnings);
                     cmd.Parameters.AddWithValue("@PaystubRecentMonthly", objIncomeVerfication.PaystubRecentMonthly);
                     cmd.Parameters.AddWithValue("@BankStatement", objIncomeVerfication.BankStatement);
-                    cmd.Parameters.AddWithValue("@2ndPayStub", objIncomeVerfication.secondPayStub);
+                    cmd.Parameters.AddWithValue("@secondPayStub", objIncomeVerfication.secondPayStub);
                     cmd.Parameters.AddWithValue("@BankStatementMonthly", objIncomeVerfication.BankStatementMonthly);
                     cmd.Parameters.AddWithValue("@xRent", objIncomeVerfication.xRent);
                     cmd.Parameters.AddWithValue("@IncomeAdequate", objIncomeVerfication.IncomeAdequate);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -377,7 +377,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@YTD_Earnings", objIncomeVerfication.YTD_Earnings);
                     cmd.Parameters.AddWithValue("@PaystubRecentMonthly", objIncomeVerfication.PaystubRecentMonthly);
                     cmd.Parameters.AddWithValue("@BankStatement", objIncomeVerfication.BankStatement);
-                    cmd.Parameters.AddWithValue("@2ndPayStub", objIncomeVerfication.secondPayStub);
+                    cmd.Parameters.AddWithValue("@secondPayStub", objIncomeVerfication.secondPayStub);
                     cmd.Parameters.AddWithValue("@BankStatementMonthly", objIncomeVerfication.BankStatementMonthly);
                     cmd.Parameters.AddWithValue("@xRent", objIncomeVerfication.xRent);
                     cmd.Parameters.AddWithValue("@IncomeAdequate", objIncomeVerfication.IncomeAdequate);
@@ -428,6 +428,8 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@MedicalCollections", objCreditSummary.MedicalCollections);
                     cmd.Parameters.AddWithValue("@PropertyRelatedHousingRecord", objCreditSummary.PropertyRelatedHousingRecord);
                     cmd.Parameters.AddWithValue("@PropertyRelatedHousingRecordPoints", objCreditSummary.PropertyRelatedHousingRecordPoints);
+                    cmd.Parameters.AddWithValue("@Bankruptcy", objCreditSummary.Bankruptcy);
+                    cmd.Parameters.AddWithValue("@BankruptcyPoints", objCreditSummary.BankruptcyPoints);
                     cmd.Parameters.AddWithValue("@BankRuptyActive", objCreditSummary.BankRuptyActive);
                     cmd.Parameters.AddWithValue("@BankRuptyActivePoints", objCreditSummary.BankRuptyActivePoints);
                     cmd.Parameters.AddWithValue("@LiensRepossessions", objCreditSummary.LiensRepossessions);
@@ -447,7 +449,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -547,16 +549,17 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objLandLordReferences.TenantId);
                     cmd.Parameters.AddWithValue("@RentalReferance", objLandLordReferences.RentalReferance);
-                    cmd.Parameters.AddWithValue("@LL1LandlordType", objLandLordReferences.LL1LandlordType);
+                    cmd.Parameters.AddWithValue("@LandlordType", objLandLordReferences.LL1LandlordType);
                     cmd.Parameters.AddWithValue("@LL1ProperNotice", objLandLordReferences.LL1ProperNotice);
                     cmd.Parameters.AddWithValue("@LL1ProperNoticePoints", objLandLordReferences.LL1ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL1NSF", objLandLordReferences.LL1NSF);
                     cmd.Parameters.AddWithValue("@LL1NSFPoints", objLandLordReferences.LL1NSFPoints);
+                    cmd.Parameters.AddWithValue("@LL1LatePayments", objLandLordReferences.LL1LatePayments);
                     cmd.Parameters.AddWithValue("@LL1LatePaymentsPoints", objLandLordReferences.LL1LatePaymentsPoints);
                     cmd.Parameters.AddWithValue("@LL1PaymentOrVacantNotices", objLandLordReferences.LL1PaymentOrVacantNotices);
 
-                    cmd.Parameters.AddWithValue("@LL110dayComplyNotice", objLandLordReferences.LL110dayComplyNotice);
-                    cmd.Parameters.AddWithValue("@LL110dayComplyNoticePoints", objLandLordReferences.LL110dayComplyNoticePoints);
+                    cmd.Parameters.AddWithValue("@LL1TendayComplyNotice", objLandLordReferences.lL1TendayComplyNotice);
+                    cmd.Parameters.AddWithValue("@LL1TendayComplyNoticePoints", objLandLordReferences.lL1TendayComplyNoticePoints);
                     cmd.Parameters.AddWithValue("@LL1HOAViolations", objLandLordReferences.LL1HOAViolations);
                     cmd.Parameters.AddWithValue("@LL1HOAViolationsPoints", objLandLordReferences.LL1HOAViolationsPoints);
                     cmd.Parameters.AddWithValue("@LL1PropertyCleanliness", objLandLordReferences.LL1PropertyCleanliness);
@@ -571,16 +574,17 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL1RerentPoints", objLandLordReferences.LL1RerentPoints);
 
 
-                    cmd.Parameters.AddWithValue("@LL2LandlordType", objLandLordReferences.LL2LandlordType);
+                    
                     cmd.Parameters.AddWithValue("@LL2ProperNotice", objLandLordReferences.LL2ProperNotice);
                     cmd.Parameters.AddWithValue("@LL2ProperNoticePoints", objLandLordReferences.LL2ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2NSF", objLandLordReferences.LL2NSF);
                     cmd.Parameters.AddWithValue("@LL2NSFPoints", objLandLordReferences.LL2NSFPoints);
+                    cmd.Parameters.AddWithValue("@LL2LatePayments", objLandLordReferences.LL2LatePayments);
                     cmd.Parameters.AddWithValue("@LL2LatePaymentsPoints", objLandLordReferences.LL2LatePaymentsPoints);
                     cmd.Parameters.AddWithValue("@LL2PaymentOrVacantNotices", objLandLordReferences.LL2PaymentOrVacantNotices);
 
-                    cmd.Parameters.AddWithValue("@LL210dayComplyNotice", objLandLordReferences.LL210dayComplyNotice);
-                    cmd.Parameters.AddWithValue("@LL210dayComplyNoticePoints", objLandLordReferences.LL210dayComplyNoticePoints);
+                    cmd.Parameters.AddWithValue("@LL2TendayComplyNotice", objLandLordReferences.lL2TendayComplyNotice);
+                    cmd.Parameters.AddWithValue("@LL2TendayComplyNoticePoints", objLandLordReferences.lL2TendayComplyNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2HOAViolations", objLandLordReferences.LL2HOAViolations);
                     cmd.Parameters.AddWithValue("@LL2HOAViolationsPoints", objLandLordReferences.LL2HOAViolationsPoints);
                     cmd.Parameters.AddWithValue("@LL2PropertyCleanliness", objLandLordReferences.LL2PropertyCleanliness);
@@ -594,10 +598,10 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL2Rerent", objLandLordReferences.LL2Rerent);
                     cmd.Parameters.AddWithValue("@LL2RerentPoints", objLandLordReferences.LL2RerentPoints);
 
-                    cmd.Parameters.AddWithValue("@RentalHistoryLength", objLandLordReferences.RentalHistoryLength);
+                   
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -632,7 +636,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objLandLordReferences.TenantId);
                     cmd.Parameters.AddWithValue("@RentalReferance", objLandLordReferences.RentalReferance);
-                    cmd.Parameters.AddWithValue("@LL1LandlordType", objLandLordReferences.LL1LandlordType);
+                    cmd.Parameters.AddWithValue("@LandlordType", objLandLordReferences.LL1LandlordType);
                     cmd.Parameters.AddWithValue("@LL1ProperNotice", objLandLordReferences.LL1ProperNotice);
                     cmd.Parameters.AddWithValue("@LL1ProperNoticePoints", objLandLordReferences.LL1ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL1NSF", objLandLordReferences.LL1NSF);
@@ -640,8 +644,8 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL1LatePaymentsPoints", objLandLordReferences.LL1LatePaymentsPoints);
                     cmd.Parameters.AddWithValue("@LL1PaymentOrVacantNotices", objLandLordReferences.LL1PaymentOrVacantNotices);
 
-                    cmd.Parameters.AddWithValue("@LL1TendayComplyNotice", objLandLordReferences.LL110dayComplyNotice);
-                    cmd.Parameters.AddWithValue("@LL1TendayComplyNoticePoints", objLandLordReferences.LL110dayComplyNoticePoints);
+                    cmd.Parameters.AddWithValue("@LL1TendayComplyNotice", objLandLordReferences.lL1TendayComplyNotice);
+                    cmd.Parameters.AddWithValue("@LL1TendayComplyNoticePoints", objLandLordReferences.lL1TendayComplyNoticePoints);
                     cmd.Parameters.AddWithValue("@LL1HOAViolations", objLandLordReferences.LL1HOAViolations);
                     cmd.Parameters.AddWithValue("@LL1HOAViolationsPoints", objLandLordReferences.LL1HOAViolationsPoints);
                     cmd.Parameters.AddWithValue("@PropertyCleanliness", objLandLordReferences.LL1PropertyCleanliness);
@@ -656,7 +660,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL1RerentPoints", objLandLordReferences.LL1RerentPoints);
 
 
-                    cmd.Parameters.AddWithValue("@LL2LandlordType", objLandLordReferences.LL2LandlordType);
+                    
                     cmd.Parameters.AddWithValue("@LL2ProperNotice", objLandLordReferences.LL2ProperNotice);
                     cmd.Parameters.AddWithValue("@LL2ProperNoticePoints", objLandLordReferences.LL2ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2NSF", objLandLordReferences.LL2NSF);
@@ -664,8 +668,8 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL2LatePaymentsPoints", objLandLordReferences.LL2LatePaymentsPoints);
                     cmd.Parameters.AddWithValue("@LL2PaymentOrVacantNotices", objLandLordReferences.LL2PaymentOrVacantNotices);
 
-                    cmd.Parameters.AddWithValue("@LL2TendayComplyNotice", objLandLordReferences.LL210dayComplyNotice);
-                    cmd.Parameters.AddWithValue("@LL2TendayComplyNoticePoints", objLandLordReferences.LL210dayComplyNoticePoints);
+                    cmd.Parameters.AddWithValue("@LL2TendayComplyNotice", objLandLordReferences.lL2TendayComplyNotice);
+                    cmd.Parameters.AddWithValue("@LL2TendayComplyNoticePoints", objLandLordReferences.lL2TendayComplyNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2HOAViolations", objLandLordReferences.LL2HOAViolations);
                     cmd.Parameters.AddWithValue("@LL2HOAViolationsPoints", objLandLordReferences.LL2HOAViolationsPoints);
                     cmd.Parameters.AddWithValue("@PropertyCleanliness", objLandLordReferences.LL2PropertyCleanliness);
@@ -678,7 +682,7 @@ namespace TenantScoreSheet.Repository
 
                     cmd.Parameters.AddWithValue("@LL2Rerent", objLandLordReferences.LL2Rerent);
                     cmd.Parameters.AddWithValue("@LL2RerentPoints", objLandLordReferences.LL2RerentPoints);
-                    cmd.Parameters.AddWithValue("@RentalHistoryLength", objLandLordReferences.RentalHistoryLength);
+                    
 
 
                     cmd.Parameters.AddWithValue("@ModifiedBy", objLandLordReferences.ModifiedBy);
@@ -717,7 +721,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objRentalHistory.TenantId);
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objRentalHistory.RentalHistoryLength);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -798,7 +802,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -888,7 +892,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 4);
+                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -981,7 +985,7 @@ namespace TenantScoreSheet.Repository
                             TenantSNo = TenantSerialNumber,
                             ApplicantName = Convert.ToString(row["ApplicantName"]),
                             Property = Convert.ToString(row["Property"]),
-                            ApplicantTypeId = Convert.ToInt32(row["ApplicantTypeId"]),
+                            ApplicantTypeId = System.Convert.IsDBNull(row["ApplicantTypeId"]) == true ? 0: Convert.ToInt32(row["ApplicantTypeId"]),
                             City = Convert.ToString(row["City"]),
                             State = Convert.ToString(row["State"]),
                             Zip = Convert.ToString(row["Zip"]),
@@ -989,11 +993,11 @@ namespace TenantScoreSheet.Repository
                             Section8Rent = Convert.ToString(row["Section8Rent"]),
                             StandardDepositProperty = Convert.ToString(row["StandardDepositProperty"]),
                             //PetDeposit = Convert.ToString(row["PetDeposit"]),
-                            PropertyTypeId = Convert.ToInt32(row["PropertyTypeId"]),
+                            PropertyTypeId = System.Convert.IsDBNull(row["PropertyTypeId"]) == true ? 0 : Convert.ToInt32(row["PropertyTypeId"]),
                             PropertyType = Convert.ToString(row["PropertyType"]),
                             ApplicantType = Convert.ToString(row["ApplicantType"]),
 
-                            TenantId = Convert.ToInt32(row["TenantId"]),
+                            TenantId = System.Convert.IsDBNull(row["TenantId"]) == true ? 0 : Convert.ToInt32(row["TenantId"]),
                             PaystubRecent = Convert.ToString(row["PaystubRecent"]),
                             YTD_Earnings = Convert.ToString(row["YTD_Earnings"]),
                             PaystubRecentMonthly = Convert.ToString(row["PaystubRecentMonthly"]),
@@ -1001,39 +1005,41 @@ namespace TenantScoreSheet.Repository
                             SecondPayStub = Convert.ToString(row["SecondPayStub"]),
                             BankStatementMonthly = Convert.ToString(row["BankStatementMonthly"]),
                             xRent = Convert.ToString(row["xRent"]),
-                            IncomeAdequate = Convert.ToString(row["IncomeAdequate"]),
-                            CreditLines = Convert.ToString(row["CreditLines"]),
+                            IncomeAdequate = System.Convert.IsDBNull(row["IncomeAdequate"]) == true ? false : Convert.ToBoolean(row["IncomeAdequate"]),
+                            CreditLines = System.Convert.IsDBNull(row["CreditLines"]) == true ? false:Convert.ToBoolean(row["CreditLines"]),
                             CreditScore = Convert.ToString(row["CreditScore"]),
-                            CreditScorePoints = Convert.ToString(row["CreditScorePoints"]),
-                            CreditScoreAvailable = Convert.ToString(row["CreditScoreAvailable"]),
+                            CreditScorePoints =  Convert.ToString(row["CreditScorePoints"]),
+                            CreditScoreAvailable = System.Convert.IsDBNull(row["CreditScoreAvailable"]) == true ? false : Convert.ToBoolean(row["CreditScoreAvailable"]),
                             CreditScoreAvailablePoints = Convert.ToString(row["CreditScoreAvailablePoints"]),
                             AccountPastDue60Days = Convert.ToString(row["AccountPastDue60Days"]),
                             CollectionAccounts = Convert.ToString(row["CollectionAccounts"]),
                             CollectionAccountsPoints = Convert.ToString(row["CollectionAccountsPoints"]),
                             MedicalCollections = Convert.ToString(row["MedicalCollections"]),
-                            PropertyRelatedHousingRecord = Convert.ToString(row["PropertyRelatedHousingRecord"]),
-
+                            PropertyRelatedHousingRecord = System.Convert.IsDBNull(row["PropertyRelatedHousingRecord"]) == true ? null : Convert.ToBoolean(row["PropertyRelatedHousingRecord"]),
+                            Bankruptcy = System.Convert.IsDBNull(row["Bankruptcy"]) == true ? 0 : Convert.ToInt32(row["Bankruptcy"]),
+                            BankruptcyPoints = System.Convert.IsDBNull(row["BankruptcyPoints"]) == true ? 0 : Convert.ToInt32(row["BankruptcyPoints"]),
                             PropertyRelatedHousingRecordPoints = Convert.ToString(row["PropertyRelatedHousingRecordPoints"]),
-                            BankRuptyActive = Convert.ToString(row["BankRuptyActive"]),
-                            BankRuptyActivePoints = Convert.ToString(row["BankRuptyActivePoints"]),
-                            LiensRepossessions = Convert.ToString(row["LiensRepossessions"]),
+                            BankRuptyActive = System.Convert.IsDBNull(row["BankRuptyActive"]) == true ? null : Convert.ToBoolean(row["BankRuptyActive"]),
+                            //BankRuptyActivePoints = Convert.ToBoolean(row["BankRuptyActivePoints"]),
+                            BankRuptyActivePoints = System.Convert.IsDBNull(row["BankRuptyActivePoints"]) == true ? null : Convert.ToInt32(row["BankRuptyActivePoints"]),
+                            LiensRepossessions = System.Convert.IsDBNull(row["LiensRepossessions"]) == true ? null : Convert.ToDateTime(row["LiensRepossessions"]),
                             LiensRepossessionsPoints = Convert.ToString(row["LiensRepossessionsPoints"]),
-                            EvectionHistory = Convert.ToString(row["EvectionHistory"]),
+                            EvectionHistory = System.Convert.IsDBNull(row["EvectionHistory"]) == true ? null : Convert.ToDateTime(row["EvectionHistory"]),
                             EvectionHistoryPoints = Convert.ToString(row["EvectionHistoryPoints"]),
-                            Class1Felonies = Convert.ToString(row["Class1Felonies"]),
+                            Class1Felonies = System.Convert.IsDBNull(row["Class1Felonies"]) == true ? null : Convert.ToBoolean(row["Class1Felonies"]),
                             Class1FeloniesPoints = Convert.ToString(row["Class1FeloniesPoints"]),
-                            Class2Felonies = Convert.ToString(row["Class2Felonies"]),
+                            Class2Felonies = System.Convert.IsDBNull(row["Class2Felonies"]) == true ? null : Convert.ToDateTime(row["Class2Felonies"]),
                             Class2FeloniesPoints = Convert.ToString(row["Class2FeloniesPoints"]),
-                            Class1Misdemeaners = Convert.ToString(row["Class1Misdemeaners"]),
+                            Class1Misdemeaners = System.Convert.IsDBNull(row["Class1Misdemeaners"]) == true ? null : Convert.ToDateTime(row["Class1Misdemeaners"]),
                             Class1MisdemeanersPoints = Convert.ToString(row["Class1MisdemeanersPoints"]),
-                            Class2Misdemeaners = Convert.ToString(row["Class2Misdemeaners"]),
+                            Class2Misdemeaners = System.Convert.IsDBNull(row["Class2Misdemeaners"]) == true ? null : Convert.ToDateTime(row["Class2Misdemeaners"]),
                             Class2MisdemeanersPoints = Convert.ToString(row["Class2MisdemeanersPoints"]),
-                            DepositApproved = Convert.ToString(row["DepositApproved"]),
+                            DepositApproved = System.Convert.IsDBNull(row["DepositApproved"]) == true ? null : Convert.ToBoolean(row["DepositApproved"]),
                             DepositToHold = Convert.ToString(row["DepositToHold"]),
-                            RentalReferance = Convert.ToString(row["RentalReferance"]),
+                            RentalReferance = System.Convert.IsDBNull(row["RentalReferance"]) == true ? null : Convert.ToBoolean(row["RentalReferance"]),
 
                             //LandlordType = Convert.ToString(row["LandlordType"]),
-                            LL1ProperNotice = Convert.ToString(row["LL1ProperNotice"]),
+                            LL1ProperNotice = System.Convert.IsDBNull(row["LL1ProperNotice"]) == true ? null : Convert.ToBoolean(row["LL1ProperNotice"]),
                             LL1ProperNoticePoints = Convert.ToString(row["LL1ProperNoticePoints"]),
                             LL1NSF = Convert.ToString(row["LL1NSF"]),
                             LL1NSFPoints = Convert.ToString(row["LL1NSFPoints"]),
@@ -1047,15 +1053,15 @@ namespace TenantScoreSheet.Repository
                             LL1HOAViolationsPoints = Convert.ToString(row["LL1HOAViolationsPoints"]),
                             LL1PropertyCleanliness = Convert.ToString(row["LL1PropertyCleanliness"]),
                             LL1PropertyCleanlinessPoints = Convert.ToString(row["LL1PropertyCleanlinessPoints"]),
-                            LL1Pets = Convert.ToString(row["LL1Pets"]),
+                            LL1Pets = System.Convert.IsDBNull(row["LL1Pets"]) == true ? null : Convert.ToBoolean(row["LL1Pets"]),
                             LL1PetsPoints = Convert.ToString(row["LL1PetsPoints"]),
-                            LL1AdversePetReferance = Convert.ToString(row["LL1AdversePetReferance"]),
+                            LL1AdversePetReferance = System.Convert.IsDBNull(row["LL1AdversePetReferance"]) == true ? null : Convert.ToBoolean(row["LL1AdversePetReferance"]),
 
                             LL1AdversePetReferancePoints = Convert.ToString(row["LL1AdversePetReferancePoints"]),
-                            LL1Rerent = Convert.ToString(row["LL1Rerent"]),
+                            LL1Rerent = System.Convert.IsDBNull(row["LL1Rerent"]) == true ? null : Convert.ToBoolean(row["LL1Rerent"]),
                             LL1RerentPoints = Convert.ToString(row["LL1RerentPoints"]),
 
-                            LL2ProperNotice = Convert.ToString(row["LL2ProperNotice"]),
+                            LL2ProperNotice = System.Convert.IsDBNull(row["LL2ProperNotice"]) == true ? null : Convert.ToBoolean(row["LL2ProperNotice"]),
                             LL2ProperNoticePoints = Convert.ToString(row["LL2ProperNoticePoints"]),
                             LL2NSF = Convert.ToString(row["LL2NSF"]),
                             LL2NSFPoints = Convert.ToString(row["LL2NSFPoints"]),
@@ -1069,32 +1075,32 @@ namespace TenantScoreSheet.Repository
                             LL2HOAViolationsPoints = Convert.ToString(row["LL2HOAViolationsPoints"]),
                             LL2PropertyCleanliness = Convert.ToString(row["LL2PropertyCleanliness"]),
                             LL2PropertyCleanlinessPoints = Convert.ToString(row["LL2PropertyCleanlinessPoints"]),
-                            LL2Pets = Convert.ToString(row["LL2Pets"]),
+                            LL2Pets = System.Convert.IsDBNull(row["LL2Pets"]) == true ? null : Convert.ToBoolean(row["LL2Pets"]),
                             LL2PetsPoints = Convert.ToString(row["LL2PetsPoints"]),
-                            LL2AdversePetReferance = Convert.ToString(row["LL2AdversePetReferance"]),
+                            LL2AdversePetReferance = System.Convert.IsDBNull(row["LL2AdversePetReferance"]) == true ? null : Convert.ToBoolean(row["LL2AdversePetReferance"]),
 
                             LL2AdversePetReferancePoints = Convert.ToString(row["LL2AdversePetReferancePoints"]),
-                            LL2Rerent = Convert.ToString(row["LL2Rerent"]),
+                            LL2Rerent = System.Convert.IsDBNull(row["LL2Rerent"]) == true ? null : Convert.ToBoolean(row["LL2Rerent"]),
                             LL2RerentPoints = Convert.ToString(row["LL2RerentPoints"]),
 
 
 
-                            RentalHistoryLength = Convert.ToString(row["RentalHistoryLength"]),
+                            RentalHistoryLength = System.Convert.IsDBNull(row["RentalHistoryLength"]) == true ? null : Convert.ToBoolean(row["RentalHistoryLength"]),
                             PetApprovedLandlordReferance1 = Convert.ToString(row["PetApprovedLandlordReferance1"]),
                             PetApprovedLandlordReferance2 = Convert.ToString(row["PetApprovedLandlordReferance2"]),
-                            NoOfCatsCompanion = Convert.ToString(row["NoOfCatsCompanion"]),
+                            NoOfCatsCompanion = System.Convert.IsDBNull(row["NoOfCatsCompanion"]) == true ? null : Convert.ToBoolean(row["NoOfCatsCompanion"]),
                             NoOfCatsCompanions = Convert.ToString(row["NoOfCatsCompanions"]),
                             NoOfCatsCompanionPoints = Convert.ToString(row["NoOfCatsCompanionPoints"]),
-                            NoOfLargeDogsCompanion = Convert.ToString(row["NoOfLargeDogsCompanion"]),
+                            NoOfLargeDogsCompanion = System.Convert.IsDBNull(row["NoOfLargeDogsCompanion"]) == true ? null : Convert.ToBoolean(row["NoOfLargeDogsCompanion"]),
                             NoOfLargeDogsCompanions = Convert.ToString(row["NoOfLargeDogsCompanions"]),
                             NoOfLargeDogsCompanionPoints = Convert.ToString(row["NoOfLargeDogsCompanionPoints"]),
-                            NoOfSmallDogsCompanion = Convert.ToString(row["NoOfSmallDogsCompanion"]),
+                            NoOfSmallDogsCompanion = System.Convert.IsDBNull(row["NoOfSmallDogsCompanion"]) == true ? null : Convert.ToBoolean(row["NoOfSmallDogsCompanion"]),
                             NoOfSmallDogsCompanions = Convert.ToString(row["NoOfSmallDogsCompanions"]),
                             NoOfSmallDogsCompanionPoints = Convert.ToString(row["NoOfSmallDogsCompanionPoints"]),
                             TotalPoints = Convert.ToString(row["TotalPoints"]),
-                            FinalApproval = Convert.ToString(row["FinalApproval"]),
+                            FinalApproval = System.Convert.IsDBNull(row["FinalApproval"]) == true ? null : Convert.ToBoolean(row["FinalApproval"]),
                             TotalDeposit = Convert.ToString(row["TotalDeposit"]),
-
+                            PetDeposit = Convert.ToString(row["PetDeposit"]),
                             DepositToHoldpaid = Convert.ToString(row["DepositToHoldpaid"]),
                             AdditionalDeposit = Convert.ToString(row["AdditionalDeposit"]),
                             BalanceDepositDue = Convert.ToString(row["BalanceDepositDue"]),
@@ -1110,7 +1116,7 @@ namespace TenantScoreSheet.Repository
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -1118,6 +1124,235 @@ namespace TenantScoreSheet.Repository
             finally { sqlcon.Close(); }
 
             return applicantslist;
+        }
+
+        /// <summary>
+        /// CreateCoverSheet method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
+        public bool CreateCoverSheet(Coversheet objCoversheet)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("spInsertCoverSheet", sqlcon))
+                {
+                    cmd.Parameters.AddWithValue("@ApplicantId", objCoversheet.ApplicantId);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
+                    cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
+                  
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@City", objCoversheet.City);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@State", objCoversheet.State);
+                    cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
+                    cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
+                    cmd.Parameters.AddWithValue("@RentReadyDate", objCoversheet.RentReadyDate);
+                    cmd.Parameters.AddWithValue("@DepositPaidDate", objCoversheet.DepositPaidDate);
+                    cmd.Parameters.AddWithValue("@RentResponsibleDate", objCoversheet.RentResponsibleDate);
+                    cmd.Parameters.AddWithValue("@AgreementType", objCoversheet.AgreementType);
+                    cmd.Parameters.AddWithValue("@QCDate", objCoversheet.QCDate);
+                    cmd.Parameters.AddWithValue("@SigningDate", objCoversheet.SigningDate);
+                    cmd.Parameters.AddWithValue("@SigningTime", objCoversheet.SigningTime);
+                    cmd.Parameters.AddWithValue("@WithWhom", objCoversheet.WithWhom);
+                    cmd.Parameters.AddWithValue("@OtherTerms", objCoversheet.OtherTerms);
+                    cmd.Parameters.AddWithValue("@ListPaidUtilities", objCoversheet.ListPaidUtilities);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge11", objCoversheet.OtherMonthlyCharge11);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge12", objCoversheet.OtherMonthlyCharge12);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge21", objCoversheet.OtherMonthlyCharge21);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge22", objCoversheet.OtherMonthlyCharge22);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge31", objCoversheet.OtherMonthlyCharge31);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge32", objCoversheet.OtherMonthlyCharge32);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge41", objCoversheet.OtherMonthlyCharge41);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge42", objCoversheet.OtherMonthlyCharge42);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge1", objCoversheet.OtherMoveinCharge1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid1", objCoversheet.OtherMoveinChargePaid1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge2", objCoversheet.OtherMoveinCharge2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid2", objCoversheet.OtherMoveinChargePaid2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge3", objCoversheet.OtherMoveinCharge3);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid3", objCoversheet.OtherMoveinChargePaid3);
+                    cmd.Parameters.AddWithValue("@RubsMoveinCharge", objCoversheet.RubsMoveinCharge);
+
+                    cmd.Parameters.AddWithValue("@RubsMoveinChargePaid", objCoversheet.RubsMoveinChargePaid);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningCharge", objCoversheet.PrepaidCleaningCharge);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningPaid", objCoversheet.PrepaidCleaningPaid);
+                    cmd.Parameters.AddWithValue("@SecurityDepositCharge", objCoversheet.SecurityDepositCharge);
+                    cmd.Parameters.AddWithValue("@SecurityDepositPaid", objCoversheet.SecurityDepositPaid);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeeCharge", objCoversheet.NonRefProcessingFeeCharge);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeePaid", objCoversheet.NonRefProcessingFeePaid);
+                    cmd.Parameters.AddWithValue("@PetDepositCharge", objCoversheet.PetDepositCharge);
+                    cmd.Parameters.AddWithValue("@PetDepositPaid", objCoversheet.PetDepositPaid);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeeCharge", objCoversheet.PetNonRefFeeCharge);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeePaid", objCoversheet.PetNonRefFeePaid);
+                    cmd.Parameters.AddWithValue("@AdditionDepositCharge", objCoversheet.AdditionDepositCharge);
+                    cmd.Parameters.AddWithValue("@AdditionDepositPaid", objCoversheet.AdditionDepositPaid);
+                    cmd.Parameters.AddWithValue("@SubTotal", objCoversheet.SubTotal);
+                    cmd.Parameters.AddWithValue("@Paid", objCoversheet.Paid);
+                    cmd.Parameters.AddWithValue("@DueatMoveinKeyPickup", objCoversheet.DueatMoveinKeyPickup);
+
+                    cmd.Parameters.AddWithValue("@CreatedBy", objCoversheet.CreatedBy);
+
+
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
+        }
+        
+
+
+        /// <summary>
+        /// UpdateCoverSheet method is used to create new users in the system.
+        /// </summary>
+        /// <param name="objCoversheet">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
+        /// <returns>Returns a boolean value indicating whether the user creation operation was successful or not.</returns>
+        public bool UpdateCoverSheet(Coversheet objCoversheet)
+        {
+            bool Result = false;
+            try
+            {
+                using (cmd = new SqlCommand("spUpdateCoverSheet", sqlcon))
+                {
+                    cmd.Parameters.AddWithValue("@Id", objCoversheet.Id);
+                    cmd.Parameters.AddWithValue("@ApplicantId", objCoversheet.ApplicantId);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
+                    cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
+                    
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
+                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@City", objCoversheet.City);
+                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    cmd.Parameters.AddWithValue("@State", objCoversheet.State);
+                    cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
+                    cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
+                    cmd.Parameters.AddWithValue("@RentReadyDate", objCoversheet.RentReadyDate);
+                    cmd.Parameters.AddWithValue("@DepositPaidDate", objCoversheet.DepositPaidDate);
+                    cmd.Parameters.AddWithValue("@RentResponsibleDate", objCoversheet.RentResponsibleDate);
+                    cmd.Parameters.AddWithValue("@AgreementType", objCoversheet.AgreementType);
+                    cmd.Parameters.AddWithValue("@QCDate", objCoversheet.QCDate);
+                    cmd.Parameters.AddWithValue("@SigningDate", objCoversheet.SigningDate);
+                    cmd.Parameters.AddWithValue("@SigningTime", objCoversheet.SigningTime);
+                    cmd.Parameters.AddWithValue("@WithWhom", objCoversheet.WithWhom);
+                    cmd.Parameters.AddWithValue("@OtherTerms", objCoversheet.OtherTerms);
+                    cmd.Parameters.AddWithValue("@ListPaidUtilities", objCoversheet.ListPaidUtilities);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge11", objCoversheet.OtherMonthlyCharge11);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge12", objCoversheet.OtherMonthlyCharge12);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge21", objCoversheet.OtherMonthlyCharge21);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge22", objCoversheet.OtherMonthlyCharge22);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge31", objCoversheet.OtherMonthlyCharge31);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge32", objCoversheet.OtherMonthlyCharge32);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge41", objCoversheet.OtherMonthlyCharge41);
+                    cmd.Parameters.AddWithValue("@OtherMonthlyCharge42", objCoversheet.OtherMonthlyCharge42);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge1", objCoversheet.OtherMoveinCharge1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid1", objCoversheet.OtherMoveinChargePaid1);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge2", objCoversheet.OtherMoveinCharge2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid2", objCoversheet.OtherMoveinChargePaid2);
+                    cmd.Parameters.AddWithValue("@OtherMoveinCharge3", objCoversheet.OtherMoveinCharge3);
+                    cmd.Parameters.AddWithValue("@OtherMoveinChargePaid3", objCoversheet.OtherMoveinChargePaid3);
+                    cmd.Parameters.AddWithValue("@RubsMoveinCharge", objCoversheet.RubsMoveinCharge);
+
+                    cmd.Parameters.AddWithValue("@RubsMoveinChargePaid", objCoversheet.RubsMoveinChargePaid);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningCharge", objCoversheet.PrepaidCleaningCharge);
+                    cmd.Parameters.AddWithValue("@PrepaidCleaningPaid", objCoversheet.PrepaidCleaningPaid);
+                    cmd.Parameters.AddWithValue("@SecurityDepositCharge", objCoversheet.SecurityDepositCharge);
+                    cmd.Parameters.AddWithValue("@SecurityDepositPaid", objCoversheet.SecurityDepositPaid);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeeCharge", objCoversheet.NonRefProcessingFeeCharge);
+                    cmd.Parameters.AddWithValue("@NonRefProcessingFeePaid", objCoversheet.NonRefProcessingFeePaid);
+                    cmd.Parameters.AddWithValue("@PetDepositCharge", objCoversheet.PetDepositCharge);
+                    cmd.Parameters.AddWithValue("@PetDepositPaid", objCoversheet.PetDepositPaid);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeeCharge", objCoversheet.PetNonRefFeeCharge);
+                    cmd.Parameters.AddWithValue("@PetNonRefFeePaid", objCoversheet.PetNonRefFeePaid);
+                    cmd.Parameters.AddWithValue("@AdditionDepositCharge", objCoversheet.AdditionDepositCharge);
+                    cmd.Parameters.AddWithValue("@AdditionDepositPaid", objCoversheet.AdditionDepositPaid);
+                    cmd.Parameters.AddWithValue("@SubTotal", objCoversheet.SubTotal);
+                    cmd.Parameters.AddWithValue("@Paid", objCoversheet.Paid);
+                    cmd.Parameters.AddWithValue("@DueatMoveinKeyPickup", objCoversheet.DueatMoveinKeyPickup);
+
+
+                    cmd.Parameters.AddWithValue("@ModifiedBy", objCoversheet.ModifiedBy);
+
+                    sqlcon.Open();
+
+                    cmd.ExecuteNonQuery();
+                    Result = true;
+                }
+            }
+            catch (Exception)
+            {
+                Result = false;
+                throw;
+            }
+            finally
+            {
+                sqlcon.Close();
+
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// GetCoverSheetByApplicantId method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public List<Coversheet> GetCoverSheetByApplicantId(int? ApplicantId)
+        {
+            List<Coversheet> coverSheetlist = new();
+            try
+            {
+                using (cmd = new SqlCommand("spGetCoversheetByApplicantId", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ApplicantId ", ApplicantId);
+                    //cmd.Parameters.AddWithValue("@Tenant_Serial_Number", TenantSerialNumber);
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Coversheet Objuser = new()
+                        {
+                            ApplicantId = ApplicantId,
+
+                        };
+
+                        coverSheetlist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return coverSheetlist;
         }
     }
 }

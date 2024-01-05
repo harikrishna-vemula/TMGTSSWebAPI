@@ -17,12 +17,14 @@
         public int? MedicalCollections { get; set; }
         public bool? PropertyRelatedHousingRecord { get; set; }
         public int? PropertyRelatedHousingRecordPoints { get; set; }
+        public int? Bankruptcy { get; set; }
+        public int? BankruptcyPoints { get; set; }
         public bool? BankRuptyActive { get; set; }
-        public bool? BankRuptyActivePoints { get; set; }
+        public int? BankRuptyActivePoints { get; set; }
         public DateTime? LiensRepossessions { get; set; }
         public int? LiensRepossessionsPoints { get; set; }
         public int? EvectionHistoryPoints { get; set; }
-        public int? EvectionHistory { get; set; }
+        public DateTime? EvectionHistory { get; set; }
         public bool? Class1Felonies { get; set; }
         public int? Class1FeloniesPoints { get; set; }
         public DateTime? Class2Felonies { get; set; }

@@ -73,11 +73,11 @@ namespace TenantScoreSheet.Controllers
                 bool applicantExisted = false;
 
                 applicantExisted = await scoresheetRepository.GetApplicantByName(value.ApplicantName);
-                    
+
                 if (applicantExisted == false)
                 {
                     int Id = scoresheetRepository.CreateApplicant(value);
-                    
+
                     if (Id > 0)
                     {
                         value.Id = Id;
@@ -650,5 +650,36 @@ namespace TenantScoreSheet.Controllers
             }
             return scoresheetList;
         }
+
+        /// <summary>
+        /// Retrieves a list of all score sheets specific to applicant from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetCoversheettByApplicantId/{ApplicantId}/")]
+        public List<Coversheet> GetCoversheettByApplicantId(int? ApplicantId)
+        {
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            List<Coversheet> scoresheetList;
+            try
+            {
+                scoresheetList = scoresheetRepository.GetCoverSheetByApplicantId(ApplicantId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return scoresheetList;
+        }
     }
+
+    // Other actions for Coversheet if needed...
 }
+
+
+

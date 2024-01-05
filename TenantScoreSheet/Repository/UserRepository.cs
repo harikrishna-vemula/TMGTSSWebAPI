@@ -48,7 +48,7 @@ namespace TenantScoreSheet.Repository
                 using (cmd = new SqlCommand("spGetUserLogin", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Email", Email);
+                    cmd.Parameters.AddWithValue("@UserName", Email);
                     cmd.Parameters.AddWithValue("@Password", Password);
                     //cmd.Parameters.AddWithValue("@Token", Token);
                     da = new SqlDataAdapter(cmd);
@@ -72,7 +72,7 @@ namespace TenantScoreSheet.Repository
                     // Handle invalid login case here
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -332,7 +332,7 @@ namespace TenantScoreSheet.Repository
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", Id);
-                    cmd.Parameters.AddWithValue("@Email", UserName);
+                    cmd.Parameters.AddWithValue("@UserName", UserName);
                     da = new SqlDataAdapter(cmd);
                     await Task.Run(() => da.Fill(dt));
                 }

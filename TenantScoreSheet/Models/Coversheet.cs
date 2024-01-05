@@ -61,5 +61,6 @@
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; } = string.Empty!;
         public DateTime? ModifiedDate { get; set; }
+        public int? ApplicantId { get; internal set; }
     }
 }

@@ -676,6 +676,45 @@ namespace TenantScoreSheet.Controllers
             }
             return scoresheetList;
         }
+
+        /// <summary>
+        /// CreateCoverSheet in the database.
+        /// </summary>
+        /// <param name="value">The Users object containing the details of the user to be created.</param>
+        /// <returns>
+        /// A dictionary containing the status and message of the operation.
+        /// </returns>
+        [HttpPost]
+        [Route("CreateCoverSheet")]
+        public async Task<Dictionary<string, object>> CreateCoverSheet([FromBody] Coversheet value)
+        {
+            Dictionary<string, object> response = new();
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            try
+            {
+                //int TenantId = scoresheetRepository.CreateTenantInfo(value.ApplicantId, value.TenantSNo, 4);
+                //value.TenantId = TenantId;
+
+                bool isPointsSummaryExist = scoresheetRepository.CreateCoverSheet(value);
+                if (isPointsSummaryExist == true)
+                {
+                    response.Add("Status", "Success");
+                    response.Add("Message", "Points Summary is added successfully...");
+                }
+                else
+                {
+                    response.Add("Status", "Error");
+                    response.Add("Message", "There is something happend while inserting record");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.Add("status", "Error");
+                response.Add("Message", ex.Message);
+            }
+            return response;
+        }
     }
 
     // Other actions for Coversheet if needed...

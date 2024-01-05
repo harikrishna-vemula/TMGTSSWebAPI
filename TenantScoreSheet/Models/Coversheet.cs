@@ -17,49 +17,49 @@
         public DateTime? DepositPaidDate { get; set; }
         public DateTime? RentResponsibleDate { get; set; }
         public string? AgreementType { get; set; }
-        public string? QCDate { get; set; }
-        public string? SigningDate { get; set; }
-        public string? SigningTime { get; set; }
+        public DateTime? QCDate { get; set; }
+        public DateTime? SigningDate { get; set; }
+        public TimeOnly? SigningTime { get; set; }
         public string? WithWhom { get; set; }
         public string? OtherTerms { get; set; }
         public string? ListPaidUtilities { get; set; }
-        public string? OtherMonthlyCharge11 { get; set; }
-        public string? OtherMonthlyCharge12 { get; set; }
-        public string? OtherMonthlyCharge21 { get; set; }
-        public string? OtherMonthlyCharge22 { get; set; }
-        public string? OtherMonthlyCharge31 { get; set; }
-        public string? OtherMonthlyCharge32 { get; set; }
-        public string? OtherMonthlyCharge41 { get; set; }
-        public string? OtherMonthlyCharge42 { get; set; }
-        public string? OtherMoveinCharge1 { get; set; }
-        public string? OtherMoveinChargePaid1 { get; set; }
-        public string? OtherMoveinCharge2 { get; set; }
-        public string? OtherMoveinChargePaid2 { get; set; }
-        public string? OtherMoveinCharge3 { get; set; }
-        public string? OtherMoveinChargePaid3 { get; set; }
-        public string? RubsMoveinCharge {  get; set;  }
+        public int? OtherMonthlyCharge11 { get; set; }
+        public int? OtherMonthlyCharge12 { get; set; }
+        public int? OtherMonthlyCharge21 { get; set; }
+        public int? OtherMonthlyCharge22 { get; set; }
+        public int? OtherMonthlyCharge31 { get; set; }
+        public int? OtherMonthlyCharge32 { get; set; }
+        public int? OtherMonthlyCharge41 { get; set; }
+        public int? OtherMonthlyCharge42 { get; set; }
+        public int? OtherMoveinCharge1 { get; set; }
+        public int? OtherMoveinChargePaid1 { get; set; }
+        public int? OtherMoveinCharge2 { get; set; }
+        public int? OtherMoveinChargePaid2 { get; set; }
+        public int? OtherMoveinCharge3 { get; set; }
+        public int? OtherMoveinChargePaid3 { get; set; }
+        public int? RubsMoveinCharge {  get; set;  }
 
-        public string? RubsMoveinChargePaid { get; set; }
-        public string? PrepaidCleaningCharge { get; set; }
-        public string? PrepaidCleaningPaid { get; set; }
-        public string? SecurityDepositCharge { get; set; }
-        public string? SecurityDepositPaid { get; set; }
-        public string? NonRefProcessingFeeCharge { get; set; }
-        public string? NonRefProcessingFeePaid { get; set; }
-        public string? PetDepositCharge { get; set; }
-        public string? PetDepositPaid { get; set; }
-        public string? PetNonRefFeeCharge { get; set; }
-        public string? PetNonRefFeePaid { get; set; }
+        public int? RubsMoveinChargePaid { get; set; }
+        public int? PrepaidCleaningCharge { get; set; }
+        public int? PrepaidCleaningPaid { get; set; }
+        public int? SecurityDepositCharge { get; set; }
+        public int? SecurityDepositPaid { get; set; }
+        public int? NonRefProcessingFeeCharge { get; set; }
+        public int? NonRefProcessingFeePaid { get; set; }
+        public int? PetDepositCharge { get; set; }
+        public int? PetDepositPaid { get; set; }
+        public int? PetNonRefFeeCharge { get; set; }
+        public int? PetNonRefFeePaid { get; set; }
 
-        public string? AdditionDepositCharge { get; set; }
-        public string? AdditionDepositPaid { get; set; }
-        public string? SubTotal { get; set; }
-        public string? Paid { get; set; }
-        public string? DueatMoveinKeyPickup { get; set; }
+        public int? AdditionDepositCharge { get; set; }
+        public int? AdditionDepositPaid { get; set; }
+        public int? SubTotal { get; set; }
+        public int? Paid { get; set; }
+        public int? DueatMoveinKeyPickup { get; set; }
        
-        public string? CreatedBy { get; set; } = string.Empty!;
+        public string? CreatedBy { get; set; } 
         public DateTime? CreatedDate { get; set; }
-        public string? ModifiedBy { get; set; } = string.Empty!;
+        public string? ModifiedBy { get; set; } 
         public DateTime? ModifiedDate { get; set; }
         public int? ApplicantId { get; internal set; }
     }

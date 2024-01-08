@@ -147,6 +147,7 @@ namespace TenantScoreSheet.Repository
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ApplicantName", objApplicant.ApplicantName);
+                    cmd.Parameters.AddWithValue("@ApplicantId", objApplicant.ApplicantId);
                     cmd.Parameters.AddWithValue("@Property", objApplicant.Property);
                     cmd.Parameters.AddWithValue("@ApplicantTypeId", objApplicant.ApplicantTypeId);
                     cmd.Parameters.AddWithValue("@City", objApplicant.City);
@@ -185,7 +186,7 @@ namespace TenantScoreSheet.Repository
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
         /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
-        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo, int? CreatedBy)
+        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo, int? CreatedBy,string ApplicantName)
         {
             bool Result = false; int TenantId = 0;
             try
@@ -196,6 +197,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@ApplicantId", ApplicantId);
                     cmd.Parameters.AddWithValue("@TenantSNo", TenantSNo);
                     cmd.Parameters.AddWithValue("@CreatedBy", CreatedBy);
+                    cmd.Parameters.AddWithValue("@ApplicantName", ApplicantName);
                     cmd.Parameters.Add("@TenantId", SqlDbType.Int);
                     cmd.Parameters["@TenantId"].Direction = ParameterDirection.Output;
                     sqlcon.Open();

@@ -3,7 +3,13 @@
     public class ApplicantInfo
     {
         public int Id { get; set; }
+
+        public int ApplicantId { get; set; }
         public string? ApplicantName { get; set; } = string.Empty!;
+
+        public int? TenantId { get; set; }
+
+        public string? TenantSNo { get; set; } 
         public string? accountname { get; set; } = string.Empty!;
         public string? Property { get; set; } = string.Empty!;
 

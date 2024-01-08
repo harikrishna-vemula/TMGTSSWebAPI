@@ -16,13 +16,15 @@
         public DateTime? RentReadyDate { get; set; }
         public DateTime? DepositPaidDate { get; set; }
         public DateTime? RentResponsibleDate { get; set; }
-        public string? AgreementType { get; set; }
+        public int? AgreementType { get; set; }
         public DateTime? QCDate { get; set; }
         public DateTime? SigningDate { get; set; }
         public TimeOnly? SigningTime { get; set; }
         public string? WithWhom { get; set; }
         public string? OtherTerms { get; set; }
         public string? ListPaidUtilities { get; set; }
+        public int? MoveinRentCharge { get; set; }
+        public int? MoveinRentPaid { get; set; }
         public int? OtherMonthlyCharge11 { get; set; }
         public int? OtherMonthlyCharge12 { get; set; }
         public int? OtherMonthlyCharge21 { get; set; }
@@ -61,6 +63,6 @@
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; } 
         public DateTime? ModifiedDate { get; set; }
-        public int? ApplicantId { get; internal set; }
+        public int? ApplicantId { get; set; }
     }
 }

@@ -1138,17 +1138,16 @@ namespace TenantScoreSheet.Repository
             {
                 using (cmd = new SqlCommand("spInsertCoverSheet", sqlcon))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ApplicantId", objCoversheet.ApplicantId);
                     cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
                     cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
                     cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
                     cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
-                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
-                  
-                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
-                    cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);                  
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);                    
                     cmd.Parameters.AddWithValue("@City", objCoversheet.City);
-                    cmd.Parameters.AddWithValue("@PropertyManager", objCoversheet.PropertyManager);
+                    
                     cmd.Parameters.AddWithValue("@State", objCoversheet.State);
                     cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
                     cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
@@ -1162,6 +1161,8 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@WithWhom", objCoversheet.WithWhom);
                     cmd.Parameters.AddWithValue("@OtherTerms", objCoversheet.OtherTerms);
                     cmd.Parameters.AddWithValue("@ListPaidUtilities", objCoversheet.ListPaidUtilities);
+                    cmd.Parameters.AddWithValue("@MoveinRentCharge", objCoversheet.MoveinRentCharge);
+                    cmd.Parameters.AddWithValue("@MoveinRentPaid", objCoversheet.MoveinRentPaid);
                     cmd.Parameters.AddWithValue("@OtherMonthlyCharge11", objCoversheet.OtherMonthlyCharge11);
                     cmd.Parameters.AddWithValue("@OtherMonthlyCharge12", objCoversheet.OtherMonthlyCharge12);
                     cmd.Parameters.AddWithValue("@OtherMonthlyCharge21", objCoversheet.OtherMonthlyCharge21);
@@ -1195,7 +1196,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Paid", objCoversheet.Paid);
                     cmd.Parameters.AddWithValue("@DueatMoveinKeyPickup", objCoversheet.DueatMoveinKeyPickup);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", objCoversheet.CreatedBy);
+                    //cmd.Parameters.AddWithValue("@CreatedBy", objCoversheet.CreatedBy);
 
 
                     sqlcon.Open();
@@ -1337,7 +1338,63 @@ namespace TenantScoreSheet.Repository
                         Coversheet Objuser = new()
                         {
                             ApplicantId = ApplicantId,
+                             
+                            PrimaryTenant = Convert.ToString(row["PrimaryTenant"]),
+                            PropertyManager = Convert.ToString(row["PropertyManager"]),
+                            Tenant2 = Convert.ToString(row["Tenant2"]),
+                            Tenant3 = Convert.ToString(row["Tenant3"]),
+                            Tenant4 = Convert.ToString(row["Tenant4"]),
+                            PropertyAddress = Convert.ToString(row["PropertyAddress"]),
+                            City = Convert.ToString(row["City"]),
+                            State = Convert.ToString(row["State"]),
+                            UnitCode = Convert.ToString(row["UnitCode"]),
+                            BestPOC = Convert.ToString(row["BestPOC"]),
+                            //PetDeposit = Convert.ToString(row["PetDeposit"]),
+                            RentReadyDate = System.Convert.IsDBNull(row["RentReadyDate"]) == true ?null : Convert.ToDateTime(row["RentReadyDate"]),
+                            DepositPaidDate = System.Convert.IsDBNull(row["DepositPaidDate"]) == true ? null : Convert.ToDateTime(row["DepositPaidDate"]),
+                            RentResponsibleDate = System.Convert.IsDBNull(row["RentResponsibleDate"]) == true ? null : Convert.ToDateTime(row["RentResponsibleDate"]),
 
+                            AgreementType = System.Convert.IsDBNull(row["AgreementType"]) == true ? null : Convert.ToInt32(row["AgreementType"]),
+                            QCDate = System.Convert.IsDBNull(row["QCDate"]) == true ? null : Convert.ToDateTime(row["QCDate"]),
+                            SigningDate = System.Convert.IsDBNull(row["SigningDate"]) == true ? null : Convert.ToDateTime(row["SigningDate"]),
+                            //SigningTime = System.Convert.IsDBNull(row["SigningTime"]) == true ? null : row["SigningTime"], //DateTime.TryParseExact(Convert.ToString(row["SigningTime"]), "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out DateTime parsedTime)
+                            WithWhom = Convert.ToString(row["WithWhom"]),
+                            OtherTerms = Convert.ToString(row["OtherTerms"]),
+                            ListPaidUtilities = Convert.ToString(row["ListPaidUtilities"]),
+                            OtherMonthlyCharge11 = System.Convert.IsDBNull(row["OtherMonthlyCharge11"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge11"]),
+                            MoveinRentCharge = System.Convert.IsDBNull(row["MoveinRentCharge"]) == true ? null : Convert.ToInt32(row["MoveinRentCharge"]),
+                            MoveinRentPaid = System.Convert.IsDBNull(row["MoveinRentPaid"]) == true ? null : Convert.ToInt32(row["MoveinRentPaid"]),
+                            OtherMonthlyCharge12 = System.Convert.IsDBNull(row["OtherMonthlyCharge12"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge12"]),
+                            OtherMonthlyCharge21 = System.Convert.IsDBNull(row["OtherMonthlyCharge21"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge21"]),
+                            OtherMonthlyCharge22 = System.Convert.IsDBNull(row["OtherMonthlyCharge22"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge22"]),
+                            OtherMonthlyCharge31 = System.Convert.IsDBNull(row["OtherMonthlyCharge31"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge31"]),
+                            OtherMonthlyCharge32 = System.Convert.IsDBNull(row["OtherMonthlyCharge32"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge32"]),
+                            OtherMonthlyCharge41 = System.Convert.IsDBNull(row["OtherMonthlyCharge41"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge41"]),
+                            OtherMonthlyCharge42 = System.Convert.IsDBNull(row["OtherMonthlyCharge42"]) == true ? null : Convert.ToInt32(row["OtherMonthlyCharge42"]),
+                            OtherMoveinCharge1 = System.Convert.IsDBNull(row["OtherMoveinCharge1"]) == true ? null : Convert.ToInt32(row["OtherMoveinCharge1"]),
+                            OtherMoveinChargePaid1 = System.Convert.IsDBNull(row["OtherMoveinChargePaid1"]) == true ? null : Convert.ToInt32(row["OtherMoveinChargePaid1"]),
+                            OtherMoveinCharge2 = System.Convert.IsDBNull(row["OtherMoveinCharge2"]) == true ? null : Convert.ToInt32(row["OtherMoveinCharge2"]),
+                            OtherMoveinChargePaid2 = System.Convert.IsDBNull(row["OtherMoveinChargePaid2"]) == true ? null : Convert.ToInt32(row["OtherMoveinChargePaid2"]),
+                            OtherMoveinCharge3 = System.Convert.IsDBNull(row["OtherMoveinCharge3"]) == true ? null : Convert.ToInt32(row["OtherMoveinCharge3"]),
+                            OtherMoveinChargePaid3 = System.Convert.IsDBNull(row["OtherMoveinChargePaid3"]) == true ? null : Convert.ToInt32(row["OtherMoveinChargePaid3"]),
+                            RubsMoveinCharge = System.Convert.IsDBNull(row["RubsMoveinCharge"]) == true ? null : Convert.ToInt32(row["RubsMoveinCharge"]),
+                            RubsMoveinChargePaid = System.Convert.IsDBNull(row["RubsMoveinChargePaid"]) == true ? null : Convert.ToInt32(row["RubsMoveinChargePaid"]),
+                            PrepaidCleaningCharge = System.Convert.IsDBNull(row["PrepaidCleaningCharge"]) == true ? null : Convert.ToInt32(row["PrepaidCleaningCharge"]),
+                            PrepaidCleaningPaid = System.Convert.IsDBNull(row["PrepaidCleaningPaid"]) == true ? null : Convert.ToInt32(row["PrepaidCleaningPaid"]),
+                            SecurityDepositCharge = System.Convert.IsDBNull(row["SecurityDepositCharge"]) == true ? null : Convert.ToInt32(row["SecurityDepositCharge"]),
+                            SecurityDepositPaid = System.Convert.IsDBNull(row["SecurityDepositPaid"]) == true ? null : Convert.ToInt32(row["SecurityDepositPaid"]),
+                            NonRefProcessingFeeCharge = System.Convert.IsDBNull(row["NonRefProcessingFeeCharge"]) == true ? null : Convert.ToInt32(row["NonRefProcessingFeeCharge"]),
+                            NonRefProcessingFeePaid = System.Convert.IsDBNull(row["NonRefProcessingFeePaid"]) == true ? null : Convert.ToInt32(row["NonRefProcessingFeePaid"]),
+                            PetDepositCharge = System.Convert.IsDBNull(row["PetDepositCharge"]) == true ? null : Convert.ToInt32(row["PetDepositCharge"]),
+
+                            PetDepositPaid = System.Convert.IsDBNull(row["PetDepositPaid"]) == true ? null : Convert.ToInt32(row["PetDepositPaid"]),
+                            PetNonRefFeeCharge = System.Convert.IsDBNull(row["PetNonRefFeeCharge"]) == true ? null : Convert.ToInt32(row["PetNonRefFeeCharge"]),
+                            PetNonRefFeePaid = System.Convert.IsDBNull(row["PetNonRefFeePaid"]) == true ? null : Convert.ToInt32(row["PetNonRefFeePaid"]),
+                            AdditionDepositCharge = System.Convert.IsDBNull(row["AdditionDepositCharge"]) == true ? null : Convert.ToInt32(row["AdditionDepositCharge"]),
+                            AdditionDepositPaid = System.Convert.IsDBNull(row["AdditionDepositPaid"]) == true ? null : Convert.ToInt32(row["AdditionDepositPaid"]),
+                            SubTotal = System.Convert.IsDBNull(row["SubTotal"]) == true ? null : Convert.ToInt32(row["SubTotal"]),
+                            Paid = System.Convert.IsDBNull(row["Paid"]) == true ? null : Convert.ToInt32(row["Paid"]),
+                            DueatMoveinKeyPickup = System.Convert.IsDBNull(row["DueatMoveinKeyPickup"]) == true ? null : Convert.ToInt32(row["DueatMoveinKeyPickup"]),
                         };
 
                         coverSheetlist.Add(Objuser);

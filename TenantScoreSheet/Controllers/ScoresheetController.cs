@@ -54,6 +54,32 @@ namespace TenantScoreSheet.Controllers
             return applicantList;
         }
 
+        /// <summary>
+        /// Retrieves a list of all applicants from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetArchivedScoreSheets")]
+        public List<ApplicantInfo> GetArchivedScoreSheets()
+        {
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            List<ApplicantInfo> applicantList;
+            try
+            {
+                applicantList = scoresheetRepository.GetAllApplicants();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return applicantList;
+        }
+
 
         /// <summary>
         /// Creates an applicant.

@@ -1415,5 +1415,68 @@ namespace TenantScoreSheet.Repository
 
             return coverSheetlist;
         }
+
+        /// <summary>
+        /// GetArchivedScoreSheets method retrieves a list of managers from the database by executing a stored procedure "spGetApplicants".
+        /// </summary>
+        /// <returns>A list of Users objects representing the managers in the system. If no managers are found, an empty list is returned.</returns>
+        public List<ApplicantInfo> GetArchivedScoreSheets()
+        {
+            List<ApplicantInfo> applicantslist = new();
+            try
+            {
+                using (cmd = new SqlCommand("spGetArchivedScoreSheets", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        ApplicantInfo Objuser = new()
+                        {
+
+                            Id = row["Id"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["Id"]),
+                            ApplicantName = row["ApplicantName"] == DBNull.Value ? null : System.Convert.ToString(row["ApplicantName"]),
+                            ApplicationStatusId = row["ApplicationStatusId"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["ApplicationStatusId"]),
+                            ApplicationStatus = row["ApplicationStatus"] == DBNull.Value ? null : System.Convert.ToString(row["ApplicationStatus"]),
+
+                            Property = row["Property"] == DBNull.Value ? null : System.Convert.ToString(row["Property"]),
+                            ApplicantTypeId = row["ApplicantTypeId"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["ApplicantTypeId"]),
+                            City = row["City"] == DBNull.Value ? null : System.Convert.ToString(row["City"]),
+                            State = row["State"] == DBNull.Value ? null : System.Convert.ToString(row["State"]),
+                            Zip = row["Zip"] == DBNull.Value ? null : System.Convert.ToString(row["Zip"]),
+                            MonthlyRent = row["MonthlyRent"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["MonthlyRent"]),
+                            Section8Rent = row["Section8Rent"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["Section8Rent"]),
+                            StandardDepositProperty = row["StandardDepositProperty"] == DBNull.Value ? null : System.Convert.ToString(row["StandardDepositProperty"]),
+                            PetDeposit = row["PetDeposit"] == DBNull.Value ? null : System.Convert.ToString(row["PetDeposit"]),
+                            PropertyTypeId = row["PropertyTypeId"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["PropertyTypeId"]),
+                            PropertyType = row["PropertyType"] == DBNull.Value ? null : System.Convert.ToString(row["PropertyType"]),
+                            ApplicantType = row["ApplicantType"] == DBNull.Value ? null : System.Convert.ToString(row["ApplicantType"]),
+                            CreatedBy = row["CreatedBy"] == DBNull.Value ? null : System.Convert.ToString(row["CreatedBy"]),
+                            CreatedDate = row["CreatedDate"] == DBNull.Value ? null : System.Convert.IsDBNull(row["CreatedDate"]) ? null : Convert.ToDateTime(row["CreatedDate"]),
+                            ModifiedDate = row["ModifiedDate"] == DBNull.Value ? null : System.Convert.IsDBNull(row["ModifiedDate"]) ? null : Convert.ToDateTime(row["ModifiedDate"])
+                            //CreatedDate = row["CreatedDate"] == null ? null : Convert.ToDateTime(row["CreatedDate"]),
+                            //    ModifiedDate = row["ModifiedDate"] == null ? null : Convert.ToDateTime(row["ModifiedDate"])
+
+                        };
+
+                        applicantslist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return applicantslist;
+        }
     }
 }

@@ -157,7 +157,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Section8Rent", objApplicant.Section8Rent);
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objApplicant.CreatedBy);
                     cmd.Parameters.AddWithValue("@Id", objApplicant.Id);
                     //cmd.Parameters.Add("@Id", SqlDbType.Int);
                     cmd.Parameters["@Id"].Direction = ParameterDirection.Output;
@@ -341,7 +341,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@BankStatementMonthly", objIncomeVerfication.BankStatementMonthly);
                     cmd.Parameters.AddWithValue("@xRent", objIncomeVerfication.xRent);
                     cmd.Parameters.AddWithValue("@IncomeAdequate", objIncomeVerfication.IncomeAdequate);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objIncomeVerfication.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -451,7 +451,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objCreditSummary.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -603,7 +603,7 @@ namespace TenantScoreSheet.Repository
                    
 
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objLandLordReferences.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -723,7 +723,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objRentalHistory.TenantId);
                     cmd.Parameters.AddWithValue("@RentalHistoryLength", objRentalHistory.RentalHistoryLength);
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objRentalHistory.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -804,7 +804,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanions", objPets.NoOfSmallDogsCompanions);
                     cmd.Parameters.AddWithValue("@NoOfSmallDogsCompanionPoints", objPets.NoOfSmallDogsCompanionPoints);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objPets.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -894,7 +894,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
 
-                    cmd.Parameters.AddWithValue("@CreatedBy", 1);
+                    cmd.Parameters.AddWithValue("@CreatedBy", objPointsSummary.CreatedBy);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();

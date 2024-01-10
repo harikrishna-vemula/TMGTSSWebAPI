@@ -55,6 +55,8 @@ namespace TenantScoreSheet.Repository
 
                             Id = row["Id"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["Id"]),
                             ApplicantName = row["ApplicantName"] == DBNull.Value ? null : System.Convert.ToString(row["ApplicantName"]),
+                            ApplicationStatusId = row["ApplicationStatusId"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["ApplicationStatusId"]),
+                            ApplicationStatus = row["ApplicationStatus"] == DBNull.Value ? null : System.Convert.ToString(row["ApplicationStatus"]),
 
                             Property = row["Property"] == DBNull.Value ? null : System.Convert.ToString(row["Property"]),
                             ApplicantTypeId = row["ApplicantTypeId"] == DBNull.Value ? 0 : System.Convert.ToInt32(row["ApplicantTypeId"]),

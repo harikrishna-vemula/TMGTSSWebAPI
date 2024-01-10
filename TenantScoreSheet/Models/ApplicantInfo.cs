@@ -7,6 +7,9 @@
         public int ApplicantId { get; set; }
         public string? ApplicantName { get; set; } = string.Empty!;
 
+        public int ApplicationStatusId { get; set; }
+        public string? ApplicationStatus { get; set; } = string.Empty!;
+
         public int? TenantId { get; set; }
 
         public string? TenantSNo { get; set; } 

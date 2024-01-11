@@ -23,41 +23,42 @@
         public string? WithWhom { get; set; }
         public string? OtherTerms { get; set; }
         public string? ListPaidUtilities { get; set; }
-        public int? MoveinRentCharge { get; set; }
-        public int? MoveinRentPaid { get; set; }
-        public int? OtherMonthlyCharge11 { get; set; }
-        public int? OtherMonthlyCharge12 { get; set; }
-        public int? OtherMonthlyCharge21 { get; set; }
-        public int? OtherMonthlyCharge22 { get; set; }
-        public int? OtherMonthlyCharge31 { get; set; }
-        public int? OtherMonthlyCharge32 { get; set; }
-        public int? OtherMonthlyCharge41 { get; set; }
-        public int? OtherMonthlyCharge42 { get; set; }
-        public int? OtherMoveinCharge1 { get; set; }
-        public int? OtherMoveinChargePaid1 { get; set; }
-        public int? OtherMoveinCharge2 { get; set; }
-        public int? OtherMoveinChargePaid2 { get; set; }
-        public int? OtherMoveinCharge3 { get; set; }
-        public int? OtherMoveinChargePaid3 { get; set; }
-        public int? RubsMoveinCharge {  get; set;  }
+        public double? MonthlyRent { get; set; }
+        public double? MoveinRentCharge { get; set; }
+        public double? MoveinRentPaid { get; set; }
+        public double? OtherMonthlyCharge11 { get; set; }
+        public double? OtherMonthlyCharge12 { get; set; }
+        public double? OtherMonthlyCharge21 { get; set; }
+        public double? OtherMonthlyCharge22 { get; set; }
+        public double? OtherMonthlyCharge31 { get; set; }
+        public double? OtherMonthlyCharge32 { get; set; }
+        public double? OtherMonthlyCharge41 { get; set; }
+        public double? OtherMonthlyCharge42 { get; set; }
+        public double? OtherMoveinCharge1 { get; set; }
+        public double? OtherMoveinChargePaid1 { get; set; }
+        public double? OtherMoveinCharge2 { get; set; }
+        public double? OtherMoveinChargePaid2 { get; set; }
+        public double? OtherMoveinCharge3 { get; set; }
+        public double? OtherMoveinChargePaid3 { get; set; }
+        public double? RubsMoveinCharge {  get; set;  }
 
-        public int? RubsMoveinChargePaid { get; set; }
-        public int? PrepaidCleaningCharge { get; set; }
-        public int? PrepaidCleaningPaid { get; set; }
-        public int? SecurityDepositCharge { get; set; }
-        public int? SecurityDepositPaid { get; set; }
-        public int? NonRefProcessingFeeCharge { get; set; }
-        public int? NonRefProcessingFeePaid { get; set; }
-        public int? PetDepositCharge { get; set; }
-        public int? PetDepositPaid { get; set; }
-        public int? PetNonRefFeeCharge { get; set; }
-        public int? PetNonRefFeePaid { get; set; }
+        public double? RubsMoveinChargePaid { get; set; }
+        public double? PrepaidCleaningCharge { get; set; }
+        public double? PrepaidCleaningPaid { get; set; }
+        public double? SecurityDepositCharge { get; set; }
+        public double? SecurityDepositPaid { get; set; }
+        public double? NonRefProcessingFeeCharge { get; set; }
+        public double? NonRefProcessingFeePaid { get; set; }
+        public double? PetDepositCharge { get; set; }
+        public double? PetDepositPaid { get; set; }
+        public double? PetNonRefFeeCharge { get; set; }
+        public double? PetNonRefFeePaid { get; set; }
 
-        public int? AdditionDepositCharge { get; set; }
-        public int? AdditionDepositPaid { get; set; }
-        public int? SubTotal { get; set; }
-        public int? Paid { get; set; }
-        public int? DueatMoveinKeyPickup { get; set; }
+        public double? AdditionDepositCharge { get; set; }
+        public double? AdditionDepositPaid { get; set; }
+        public double? SubTotal { get; set; }
+        public double? Paid { get; set; }
+        public double? DueatMoveinKeyPickup { get; set; }
        
         public string? CreatedBy { get; set; } 
         public DateTime? CreatedDate { get; set; }

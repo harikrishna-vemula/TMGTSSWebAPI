@@ -160,6 +160,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
                     cmd.Parameters.AddWithValue("@CreatedBy", objApplicant.CreatedBy);
+                    cmd.Parameters.AddWithValue("@ApplicationStatusId", objApplicant.ApplicationStatusId);
                     cmd.Parameters.AddWithValue("@Id", objApplicant.Id);
                     //cmd.Parameters.Add("@Id", SqlDbType.Int);
                     cmd.Parameters["@Id"].Direction = ParameterDirection.Output;

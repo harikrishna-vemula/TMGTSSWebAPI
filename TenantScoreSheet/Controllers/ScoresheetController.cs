@@ -68,7 +68,7 @@ namespace TenantScoreSheet.Controllers
             List<ApplicantInfo> applicantList;
             try
             {
-                applicantList = scoresheetRepository.GetAllApplicants();
+                applicantList = scoresheetRepository.GetArchivedScoreSheets();
             }
             catch (Exception)
             {

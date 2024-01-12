@@ -991,6 +991,7 @@ namespace TenantScoreSheet.Repository
                             ApplicantName = Convert.ToString(row["ApplicantName"]),
                             Property = Convert.ToString(row["Property"]),
                             ApplicantTypeId = System.Convert.IsDBNull(row["ApplicantTypeId"]) == true ? 0: Convert.ToInt32(row["ApplicantTypeId"]),
+                            ApplicationStatusId = System.Convert.IsDBNull(row["ApplicationStatusId"]) == true ? 0 : Convert.ToInt32(row["ApplicationStatusId"]),
                             City = Convert.ToString(row["City"]),
                             State = Convert.ToString(row["State"]),
                             Zip = Convert.ToString(row["Zip"]),

@@ -770,8 +770,34 @@ namespace TenantScoreSheet.Controllers
             }
             return response;
         }
-    }
 
+
+        /// <summary>
+        /// Retrieves a list of all score sheets specific to applicant from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetApprovalSummaryByApplicantId/{ApplicantId}")]
+        public List<Scoresheet> GetApprovalSummaryByApplicantId(int? ApplicantId)
+        {
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            List<Scoresheet> scoresheetList;
+            try
+            {
+                scoresheetList = scoresheetRepository.GetApprovalSummaryByApplicantId(ApplicantId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return scoresheetList;
+        }
+    }
     // Other actions for Coversheet if needed...
 }
 

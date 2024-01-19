@@ -27,13 +27,13 @@
         public double? MoveinRentCharge { get; set; }
         public double? MoveinRentPaid { get; set; }
         public double? OtherMonthlyCharge11 { get; set; }
-        public double? OtherMonthlyCharge12 { get; set; }
+        public string OtherMonthlyCharge12 { get; set; }
         public double? OtherMonthlyCharge21 { get; set; }
-        public double? OtherMonthlyCharge22 { get; set; }
+        public string OtherMonthlyCharge22 { get; set; }
         public double? OtherMonthlyCharge31 { get; set; }
-        public double? OtherMonthlyCharge32 { get; set; }
+        public string OtherMonthlyCharge32 { get; set; }
         public double? OtherMonthlyCharge41 { get; set; }
-        public double? OtherMonthlyCharge42 { get; set; }
+        public string OtherMonthlyCharge42 { get; set; }
         public double? OtherMoveinCharge1 { get; set; }
         public double? OtherMoveinChargePaid1 { get; set; }
         public double? OtherMoveinCharge2 { get; set; }

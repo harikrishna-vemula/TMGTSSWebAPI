@@ -49,48 +49,46 @@
         public string? LandlordType { get; set; }
 
         public bool? LL1ProperNotice { get; set; }
-        public string? LL1ProperNoticePoints { get; set; }
-        public string? LL1NSF { get; set; }
-        public string? LL1NSFPoints { get; set; }
-        public string? LL1LatePayments { get; set; }
-        public string? LL1LatePaymentsPoints { get; set; }
-        public string? LL1PaymentOrVacantNotices { get; set; }
-        public string? LL1PaymentOrVacantNoticesPoints { get; set; }
-        public string? LL1TendayComplyNotice { get; set; }
-        public string? LL1TendayComplyNoticePoints { get; set; }
-        public string? LL1HOAViolations { get; set; }
-        public string? LL1HOAViolationsPoints { get; set; }
-        public string? LL1PropertyCleanliness { get; set; }
-
-        public string? LL1PropertyCleanlinessPoints { get; set; }
+        public int? LL1ProperNoticePoints { get; set; }
+        public int? LL1NSF { get; set; }
+        public int? LL1NSFPoints { get; set; }
+        public int? LL1LatePayments { get; set; }
+        public int? LL1LatePaymentsPoints { get; set; }
+        public int? LL1PaymentOrVacantNotices { get; set; }
+        public int? LL1PaymentOrVacantNoticesPoints { get; set; }
+        public int? LL1TendayComplyNotice { get; set; }
+        public int? LL1TendayComplyNoticePoints { get; set; }
+        public int? LL1HOAViolations { get; set; }
+        public int? LL1HOAViolationsPoints { get; set; }
+        public int? LL1PropertyCleanliness { get; set; }
+        public int? LL1PropertyCleanlinessPoints { get; set; }
         public bool? LL1Pets { get; set; }
-        public string? LL1PetsPoints { get; set; }
+        public int? LL1PetsPoints { get; set; }
         public bool? LL1AdversePetReferance { get; set; }
-        public string? LL1AdversePetReferancePoints { get; set; }
+        public int? LL1AdversePetReferancePoints { get; set; }
         public bool? LL1Rerent { get; set; }
-        public string? LL1RerentPoints { get; set; }
+        public int? LL1RerentPoints { get; set; }
 
         public bool? LL2ProperNotice { get; set; }
-        public string? LL2ProperNoticePoints { get; set; }
-        public string? LL2NSF { get; set; }
-        public string? LL2NSFPoints { get; set; }
-        public string? LL2LatePayments { get; set; }
-        public string? LL2LatePaymentsPoints { get; set; }
-        public string? LL2PaymentOrVacantNotices { get; set; }
-        public string? LL2PaymentOrVacantNoticesPoints { get; set; }
-        public string? LL2TendayComplyNotice { get; set; }
-        public string? LL2TendayComplyNoticePoints { get; set; }
-        public string? LL2HOAViolations { get; set; }
-        public string? LL2HOAViolationsPoints { get; set; }
-        public string? LL2PropertyCleanliness { get; set; }
-
-        public string? LL2PropertyCleanlinessPoints { get; set; }
+        public int? LL2ProperNoticePoints { get; set; }
+        public int? LL2NSF { get; set; }
+        public int? LL2NSFPoints { get; set; }
+        public int? LL2LatePayments { get; set; }
+        public int? LL2LatePaymentsPoints { get; set; }
+        public int? LL2PaymentOrVacantNotices { get; set; }
+        public int? LL2PaymentOrVacantNoticesPoints { get; set; }
+        public int? LL2TendayComplyNotice { get; set; }
+        public int? LL2TendayComplyNoticePoints { get; set; }
+        public int? LL2HOAViolations { get; set; }
+        public int? LL2HOAViolationsPoints { get; set; }
+        public int? LL2PropertyCleanliness { get; set; }
+        public int? LL2PropertyCleanlinessPoints { get; set; }
         public bool? LL2Pets { get; set; }
-        public string? LL2PetsPoints { get; set; }
+        public int? LL2PetsPoints { get; set; }
         public bool? LL2AdversePetReferance { get; set; }
-        public string? LL2AdversePetReferancePoints { get; set; }
+        public int? LL2AdversePetReferancePoints { get; set; }
         public bool? LL2Rerent { get; set; }
-        public string? LL2RerentPoints { get; set; }
+        public int? LL2RerentPoints { get; set; }
         public bool? RentalHistoryLength { get; set; }
         public string? PetApprovedLandlordReferance1 { get; set; }
 
@@ -129,6 +127,7 @@
         public int? PropertyTypeId { get; set; }
         public string? ApplicantType { get; set; }
         public string? PropertyType { get; set; }
+        public int? ApplicationStatusId { get; set; }
 
       
         public string? CreatedBy { get; set; } = string.Empty!;

@@ -189,7 +189,7 @@ namespace TenantScoreSheet.Repository
         /// </summary>
         /// <param name="objuser">Represents an instance of the 'Users' class containing various properties related to the user being created.</param>
         /// <returns>Returns a id value indicating whether the user creation operation was successful or not.</returns>
-        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo, int? CreatedBy,string ApplicantName)
+        public int CreateTenantInfo(int? ApplicantId, int? TenantSNo, int? CreatedBy, string ApplicantName)
         {
             bool Result = false; int TenantId = 0;
             try
@@ -579,7 +579,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL1RerentPoints", objLandLordReferences.LL1RerentPoints);
 
 
-                    
+
                     cmd.Parameters.AddWithValue("@LL2ProperNotice", objLandLordReferences.LL2ProperNotice);
                     cmd.Parameters.AddWithValue("@LL2ProperNoticePoints", objLandLordReferences.LL2ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2NSF", objLandLordReferences.LL2NSF);
@@ -603,7 +603,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL2Rerent", objLandLordReferences.LL2Rerent);
                     cmd.Parameters.AddWithValue("@LL2RerentPoints", objLandLordReferences.LL2RerentPoints);
 
-                   
+
 
 
                     cmd.Parameters.AddWithValue("@CreatedBy", objLandLordReferences.CreatedBy);
@@ -665,7 +665,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@LL1RerentPoints", objLandLordReferences.LL1RerentPoints);
 
 
-                    
+
                     cmd.Parameters.AddWithValue("@LL2ProperNotice", objLandLordReferences.LL2ProperNotice);
                     cmd.Parameters.AddWithValue("@LL2ProperNoticePoints", objLandLordReferences.LL2ProperNoticePoints);
                     cmd.Parameters.AddWithValue("@LL2NSF", objLandLordReferences.LL2NSF);
@@ -687,7 +687,7 @@ namespace TenantScoreSheet.Repository
 
                     cmd.Parameters.AddWithValue("@LL2Rerent", objLandLordReferences.LL2Rerent);
                     cmd.Parameters.AddWithValue("@LL2RerentPoints", objLandLordReferences.LL2RerentPoints);
-                    
+
 
 
                     cmd.Parameters.AddWithValue("@ModifiedBy", objLandLordReferences.ModifiedBy);
@@ -990,7 +990,7 @@ namespace TenantScoreSheet.Repository
                             TenantSNo = TenantSerialNumber,
                             ApplicantName = Convert.ToString(row["ApplicantName"]),
                             Property = Convert.ToString(row["Property"]),
-                            ApplicantTypeId = System.Convert.IsDBNull(row["ApplicantTypeId"]) == true ? 0: Convert.ToInt32(row["ApplicantTypeId"]),
+                            ApplicantTypeId = System.Convert.IsDBNull(row["ApplicantTypeId"]) == true ? 0 : Convert.ToInt32(row["ApplicantTypeId"]),
                             ApplicationStatusId = System.Convert.IsDBNull(row["ApplicationStatusId"]) == true ? 0 : Convert.ToInt32(row["ApplicationStatusId"]),
                             City = Convert.ToString(row["City"]),
                             State = Convert.ToString(row["State"]),
@@ -1012,9 +1012,9 @@ namespace TenantScoreSheet.Repository
                             BankStatementMonthly = Convert.ToString(row["BankStatementMonthly"]),
                             xRent = Convert.ToString(row["xRent"]),
                             IncomeAdequate = System.Convert.IsDBNull(row["IncomeAdequate"]) == true ? false : Convert.ToBoolean(row["IncomeAdequate"]),
-                            CreditLines = System.Convert.IsDBNull(row["CreditLines"]) == true ? false:Convert.ToBoolean(row["CreditLines"]),
+                            CreditLines = System.Convert.IsDBNull(row["CreditLines"]) == true ? false : Convert.ToBoolean(row["CreditLines"]),
                             CreditScore = Convert.ToString(row["CreditScore"]),
-                            CreditScorePoints =  Convert.ToString(row["CreditScorePoints"]),
+                            CreditScorePoints = Convert.ToString(row["CreditScorePoints"]),
                             CreditScoreAvailable = System.Convert.IsDBNull(row["CreditScoreAvailable"]) == true ? false : Convert.ToBoolean(row["CreditScoreAvailable"]),
                             CreditScoreAvailablePoints = Convert.ToString(row["CreditScoreAvailablePoints"]),
                             AccountPastDue60Days = Convert.ToString(row["AccountPastDue60Days"]),
@@ -1046,48 +1046,46 @@ namespace TenantScoreSheet.Repository
 
                             //LandlordType = Convert.ToString(row["LandlordType"]),
                             LL1ProperNotice = System.Convert.IsDBNull(row["LL1ProperNotice"]) == true ? null : Convert.ToBoolean(row["LL1ProperNotice"]),
-                            LL1ProperNoticePoints = Convert.ToString(row["LL1ProperNoticePoints"]),
-                            LL1NSF = Convert.ToString(row["LL1NSF"]),
-                            LL1NSFPoints = Convert.ToString(row["LL1NSFPoints"]),
-                            LL1LatePayments = Convert.ToString(row["LL1LatePayments"]),
-                            LL1LatePaymentsPoints = Convert.ToString(row["LL1LatePaymentsPoints"]),
-                            LL1PaymentOrVacantNotices = Convert.ToString(row["LL1PaymentOrVacantNotices"]),
-                            LL1PaymentOrVacantNoticesPoints = Convert.ToString(row["LL1PaymentOrVacantNoticesPoints"]),
-                            LL1TendayComplyNotice = Convert.ToString(row["LL1TendayComplyNotice"]),
-                            LL1TendayComplyNoticePoints = Convert.ToString(row["LL1TendayComplyNoticePoints"]),
-                            LL1HOAViolations = Convert.ToString(row["LL1HOAViolations"]),
-                            LL1HOAViolationsPoints = Convert.ToString(row["LL1HOAViolationsPoints"]),
-                            LL1PropertyCleanliness = Convert.ToString(row["LL1PropertyCleanliness"]),
-                            LL1PropertyCleanlinessPoints = Convert.ToString(row["LL1PropertyCleanlinessPoints"]),
+                            LL1ProperNoticePoints = System.Convert.IsDBNull(row["LL1ProperNoticePoints"]) == true ? 0 : Convert.ToInt32(row["LL1ProperNoticePoints"]),
+                            LL1NSF = System.Convert.IsDBNull(row["LL1NSF"]) == true ? 0 : Convert.ToInt32(row["LL1NSF"]),
+                            LL1NSFPoints = System.Convert.IsDBNull(row["LL1NSFPoints"]) == true ? 0 : Convert.ToInt32(row["LL1NSFPoints"]),
+                            LL1LatePayments = System.Convert.IsDBNull(row["LL1LatePayments"]) == true ? 0 : Convert.ToInt32(row["LL1LatePayments"]),
+                            LL1LatePaymentsPoints = System.Convert.IsDBNull(row["LL1LatePaymentsPoints"]) == true ? 0 : Convert.ToInt32(row["LL1LatePaymentsPoints"]),
+                            LL1PaymentOrVacantNotices = System.Convert.IsDBNull(row["LL1PaymentOrVacantNotices"]) == true ? 0 : Convert.ToInt32(row["LL1PaymentOrVacantNotices"]),
+                            LL1PaymentOrVacantNoticesPoints = System.Convert.IsDBNull(row["LL1PaymentOrVacantNoticesPoints"]) == true ? 0 : Convert.ToInt32(row["LL1PaymentOrVacantNoticesPoints"]),
+                            LL1TendayComplyNotice = System.Convert.IsDBNull(row["LL1TendayComplyNotice"]) == true ? 0 : Convert.ToInt32(row["LL1TendayComplyNotice"]),
+                            LL1TendayComplyNoticePoints = System.Convert.IsDBNull(row["LL1TendayComplyNoticePoints"]) == true ? 0 : Convert.ToInt32(row["LL1TendayComplyNoticePoints"]),
+                            LL1HOAViolations = System.Convert.IsDBNull(row["LL1HOAViolations"]) == true ? 0 : Convert.ToInt32(row["LL1HOAViolations"]),
+                            LL1HOAViolationsPoints = System.Convert.IsDBNull(row["LL1HOAViolationsPoints"]) == true ? 0 : Convert.ToInt32(row["LL1HOAViolationsPoints"]),
+                            LL1PropertyCleanliness = System.Convert.IsDBNull(row["LL1PropertyCleanliness"]) == true ? 0 : Convert.ToInt32(row["LL1PropertyCleanliness"]),
+                            LL1PropertyCleanlinessPoints = System.Convert.IsDBNull(row["LL1PropertyCleanlinessPoints"]) == true ? 0 : Convert.ToInt32(row["LL1PropertyCleanlinessPoints"]),
                             LL1Pets = System.Convert.IsDBNull(row["LL1Pets"]) == true ? null : Convert.ToBoolean(row["LL1Pets"]),
-                            LL1PetsPoints = Convert.ToString(row["LL1PetsPoints"]),
+                            LL1PetsPoints = System.Convert.IsDBNull(row["LL1PetsPoints"]) == true ? 0 : Convert.ToInt32(row["LL1PetsPoints"]),
                             LL1AdversePetReferance = System.Convert.IsDBNull(row["LL1AdversePetReferance"]) == true ? null : Convert.ToBoolean(row["LL1AdversePetReferance"]),
-
-                            LL1AdversePetReferancePoints = Convert.ToString(row["LL1AdversePetReferancePoints"]),
+                            LL1AdversePetReferancePoints = System.Convert.IsDBNull(row["LL1AdversePetReferancePoints"]) == true ? 0 : Convert.ToInt32(row["LL1AdversePetReferancePoints"]),
                             LL1Rerent = System.Convert.IsDBNull(row["LL1Rerent"]) == true ? null : Convert.ToBoolean(row["LL1Rerent"]),
-                            LL1RerentPoints = Convert.ToString(row["LL1RerentPoints"]),
+                            LL1RerentPoints = System.Convert.IsDBNull(row["LL1RerentPoints"]) == true ? 0 : Convert.ToInt32(row["LL1RerentPoints"]),
 
                             LL2ProperNotice = System.Convert.IsDBNull(row["LL2ProperNotice"]) == true ? null : Convert.ToBoolean(row["LL2ProperNotice"]),
-                            LL2ProperNoticePoints = Convert.ToString(row["LL2ProperNoticePoints"]),
-                            LL2NSF = Convert.ToString(row["LL2NSF"]),
-                            LL2NSFPoints = Convert.ToString(row["LL2NSFPoints"]),
-                            LL2LatePayments = Convert.ToString(row["LL2LatePayments"]),
-                            LL2LatePaymentsPoints = Convert.ToString(row["LL2LatePaymentsPoints"]),
-                            LL2PaymentOrVacantNotices = Convert.ToString(row["LL2PaymentOrVacantNotices"]),
-                            LL2PaymentOrVacantNoticesPoints = Convert.ToString(row["LL2PaymentOrVacantNoticesPoints"]),
-                            LL2TendayComplyNotice = Convert.ToString(row["LL2TendayComplyNotice"]),
-                            LL2TendayComplyNoticePoints = Convert.ToString(row["LL2TendayComplyNoticePoints"]),
-                            LL2HOAViolations = Convert.ToString(row["LL2HOAViolations"]),
-                            LL2HOAViolationsPoints = Convert.ToString(row["LL2HOAViolationsPoints"]),
-                            LL2PropertyCleanliness = Convert.ToString(row["LL2PropertyCleanliness"]),
-                            LL2PropertyCleanlinessPoints = Convert.ToString(row["LL2PropertyCleanlinessPoints"]),
+                            LL2ProperNoticePoints = System.Convert.IsDBNull(row["LL2ProperNoticePoints"]) == true ? 0 : Convert.ToInt32(row["LL2ProperNoticePoints"]),
+                            LL2NSF = System.Convert.IsDBNull(row["LL2NSF"]) == true ? 0 : Convert.ToInt32(row["LL2NSF"]),
+                            LL2NSFPoints = System.Convert.IsDBNull(row["LL2NSFPoints"]) == true ? 0 : Convert.ToInt32(row["LL2NSFPoints"]),
+                            LL2LatePayments = System.Convert.IsDBNull(row["LL2LatePayments"]) == true ? 0 : Convert.ToInt32(row["LL2LatePayments"]),
+                            LL2LatePaymentsPoints = System.Convert.IsDBNull(row["LL2LatePaymentsPoints"]) == true ? 0 : Convert.ToInt32(row["LL2LatePaymentsPoints"]),
+                            LL2PaymentOrVacantNotices = System.Convert.IsDBNull(row["LL2PaymentOrVacantNotices"]) == true ? 0 : Convert.ToInt32(row["LL2PaymentOrVacantNotices"]),
+                            LL2PaymentOrVacantNoticesPoints = System.Convert.IsDBNull(row["LL2PaymentOrVacantNoticesPoints"]) == true ? 0 : Convert.ToInt32(row["LL2PaymentOrVacantNoticesPoints"]),
+                            LL2TendayComplyNotice = System.Convert.IsDBNull(row["LL2TendayComplyNotice"]) == true ? 0 : Convert.ToInt32(row["LL2TendayComplyNotice"]),
+                            LL2TendayComplyNoticePoints = System.Convert.IsDBNull(row["LL2TendayComplyNoticePoints"]) == true ? 0 : Convert.ToInt32(row["LL2TendayComplyNoticePoints"]),
+                            LL2HOAViolations = System.Convert.IsDBNull(row["LL2HOAViolations"]) == true ? 0 : Convert.ToInt32(row["LL2HOAViolations"]),
+                            LL2HOAViolationsPoints = System.Convert.IsDBNull(row["LL2HOAViolationsPoints"]) == true ? 0 : Convert.ToInt32(row["LL2HOAViolationsPoints"]),
+                            LL2PropertyCleanliness = System.Convert.IsDBNull(row["LL2PropertyCleanliness"]) == true ? 0 : Convert.ToInt32(row["LL2PropertyCleanliness"]),
+                            LL2PropertyCleanlinessPoints = System.Convert.IsDBNull(row["LL2PropertyCleanlinessPoints"]) == true ? 0 : Convert.ToInt32(row["LL2PropertyCleanlinessPoints"]),
                             LL2Pets = System.Convert.IsDBNull(row["LL2Pets"]) == true ? null : Convert.ToBoolean(row["LL2Pets"]),
-                            LL2PetsPoints = Convert.ToString(row["LL2PetsPoints"]),
+                            LL2PetsPoints = System.Convert.IsDBNull(row["LL2PetsPoints"]) == true ? 0 : Convert.ToInt32(row["LL2PetsPoints"]),
                             LL2AdversePetReferance = System.Convert.IsDBNull(row["LL2AdversePetReferance"]) == true ? null : Convert.ToBoolean(row["LL2AdversePetReferance"]),
-
-                            LL2AdversePetReferancePoints = Convert.ToString(row["LL2AdversePetReferancePoints"]),
+                            LL2AdversePetReferancePoints = System.Convert.IsDBNull(row["LL2AdversePetReferancePoints"]) == true ? 0 : Convert.ToInt32(row["LL2AdversePetReferancePoints"]),
                             LL2Rerent = System.Convert.IsDBNull(row["LL2Rerent"]) == true ? null : Convert.ToBoolean(row["LL2Rerent"]),
-                            LL2RerentPoints = Convert.ToString(row["LL2RerentPoints"]),
+                            LL2RerentPoints = System.Convert.IsDBNull(row["LL2RerentPoints"]) == true ? 0 : Convert.ToInt32(row["LL2RerentPoints"]),
 
 
 
@@ -1150,10 +1148,10 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
                     cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
                     cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
-                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);                  
-                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);                    
+                    cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
+                    cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
                     cmd.Parameters.AddWithValue("@City", objCoversheet.City);
-                    
+
                     cmd.Parameters.AddWithValue("@State", objCoversheet.State);
                     cmd.Parameters.AddWithValue("@UnitCode", objCoversheet.UnitCode);
                     cmd.Parameters.AddWithValue("@BestPOC", objCoversheet.BestPOC);
@@ -1224,7 +1222,7 @@ namespace TenantScoreSheet.Repository
             }
             return Result;
         }
-        
+
 
 
         /// <summary>
@@ -1246,7 +1244,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@Tenant2", objCoversheet.Tenant2);
                     cmd.Parameters.AddWithValue("@Tenant3", objCoversheet.Tenant3);
                     cmd.Parameters.AddWithValue("@Tenant4", objCoversheet.Tenant4);
-                    
+
                     cmd.Parameters.AddWithValue("@PropertyAddress", objCoversheet.PropertyAddress);
                     cmd.Parameters.AddWithValue("@PrimaryTenant", objCoversheet.PrimaryTenant);
                     cmd.Parameters.AddWithValue("@City", objCoversheet.City);
@@ -1345,7 +1343,7 @@ namespace TenantScoreSheet.Repository
                         Coversheet Objuser = new()
                         {
                             ApplicantId = ApplicantId,
-                             
+
                             PrimaryTenant = Convert.ToString(row["PrimaryTenant"]),
                             PropertyManager = Convert.ToString(row["PropertyManager"]),
                             Tenant2 = Convert.ToString(row["Tenant2"]),
@@ -1357,7 +1355,7 @@ namespace TenantScoreSheet.Repository
                             UnitCode = Convert.ToString(row["UnitCode"]),
                             BestPOC = Convert.ToString(row["BestPOC"]),
                             //PetDeposit = Convert.ToString(row["PetDeposit"]),
-                            RentReadyDate = System.Convert.IsDBNull(row["RentReadyDate"]) == true ?null : Convert.ToDateTime(row["RentReadyDate"]),
+                            RentReadyDate = System.Convert.IsDBNull(row["RentReadyDate"]) == true ? null : Convert.ToDateTime(row["RentReadyDate"]),
                             DepositPaidDate = System.Convert.IsDBNull(row["DepositPaidDate"]) == true ? null : Convert.ToDateTime(row["DepositPaidDate"]),
                             RentResponsibleDate = System.Convert.IsDBNull(row["RentResponsibleDate"]) == true ? null : Convert.ToDateTime(row["RentResponsibleDate"]),
 
@@ -1373,13 +1371,13 @@ namespace TenantScoreSheet.Repository
                             OtherMonthlyCharge11 = System.Convert.IsDBNull(row["OtherMonthlyCharge11"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge11"]),
                             MoveinRentCharge = System.Convert.IsDBNull(row["MoveinRentCharge"]) == true ? null : Convert.ToDouble(row["MoveinRentCharge"]),
                             MoveinRentPaid = System.Convert.IsDBNull(row["MoveinRentPaid"]) == true ? null : Convert.ToDouble(row["MoveinRentPaid"]),
-                            OtherMonthlyCharge12 = System.Convert.IsDBNull(row["OtherMonthlyCharge12"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge12"]),
+                            OtherMonthlyCharge12 = Convert.ToString(row["OtherMonthlyCharge12"]),
                             OtherMonthlyCharge21 = System.Convert.IsDBNull(row["OtherMonthlyCharge21"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge21"]),
-                            OtherMonthlyCharge22 = System.Convert.IsDBNull(row["OtherMonthlyCharge22"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge22"]),
+                            OtherMonthlyCharge22 = Convert.ToString(row["OtherMonthlyCharge22"]),
                             OtherMonthlyCharge31 = System.Convert.IsDBNull(row["OtherMonthlyCharge31"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge31"]),
-                            OtherMonthlyCharge32 = System.Convert.IsDBNull(row["OtherMonthlyCharge32"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge32"]),
+                            OtherMonthlyCharge32 = Convert.ToString(row["OtherMonthlyCharge32"]),
                             OtherMonthlyCharge41 = System.Convert.IsDBNull(row["OtherMonthlyCharge41"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge41"]),
-                            OtherMonthlyCharge42 = System.Convert.IsDBNull(row["OtherMonthlyCharge42"]) == true ? null : Convert.ToDouble(row["OtherMonthlyCharge42"]),
+                            OtherMonthlyCharge42 = Convert.ToString(row["OtherMonthlyCharge42"]),
                             OtherMoveinCharge1 = System.Convert.IsDBNull(row["OtherMoveinCharge1"]) == true ? null : Convert.ToDouble(row["OtherMoveinCharge1"]),
                             OtherMoveinChargePaid1 = System.Convert.IsDBNull(row["OtherMoveinChargePaid1"]) == true ? null : Convert.ToDouble(row["OtherMoveinChargePaid1"]),
                             OtherMoveinCharge2 = System.Convert.IsDBNull(row["OtherMoveinCharge2"]) == true ? null : Convert.ToDouble(row["OtherMoveinCharge2"]),
@@ -1475,6 +1473,73 @@ namespace TenantScoreSheet.Repository
                 }
             }
             catch (Exception)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return applicantslist;
+        }
+
+        /// <summary>
+        /// GetApprovalSummaryByApplicantId method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public List<Scoresheet> GetApprovalSummaryByApplicantId(int? ApplicantId)
+        {
+            List<Scoresheet> applicantslist = new();
+            try
+            {
+                using (cmd = new SqlCommand("spGetApprovalSummaryByApplicantId", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ApplicantId ", ApplicantId);
+                  
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Scoresheet Objuser = new()
+                        {
+                            //Id = Convert.ToInt32(row["Id"]),
+                            ApplicantId = ApplicantId,
+                            
+                            ApplicantName = Convert.ToString(row["ApplicantName"]),
+                            Property = Convert.ToString(row["Property"]),
+                           
+                            City = Convert.ToString(row["City"]),
+                            State = Convert.ToString(row["State"]),
+                             
+                           
+
+                            TenantId = System.Convert.IsDBNull(row["TenantId"]) == true ? 0 : Convert.ToInt32(row["TenantId"]),
+                           
+                            TotalPoints = Convert.ToString(row["TotalPoints"]),
+                            FinalApproval = System.Convert.IsDBNull(row["FinalApproval"]) == true ? null : Convert.ToBoolean(row["FinalApproval"]),
+                            TotalDeposit = Convert.ToString(row["TotalDeposit"]),
+                            PetDeposit = Convert.ToString(row["PetDeposit"]),
+                            DepositToHoldpaid = Convert.ToString(row["DepositToHoldpaid"]),
+                            AdditionalDeposit = Convert.ToString(row["AdditionalDeposit"]),
+                            BalanceDepositDue = Convert.ToString(row["BalanceDepositDue"]),
+                            //CreatedBy = Convert.ToString(row["CreatedBy"]),
+                            //CreatedDate = Convert.ToDateTime(row["CreatedDate"]),
+                            //ModifiedBy = Convert.ToString(row["ModifiedBy"]),
+                            //ModifiedDate = Convert.ToDateTime(row["ModifiedDate"])
+
+                        };
+
+                        applicantslist.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception ex)
             {
 
                 throw;

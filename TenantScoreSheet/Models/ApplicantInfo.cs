@@ -27,13 +27,13 @@
 
         public string? Zip { get; set; } = string.Empty!;
 
-        public int? MonthlyRent { get; set; } 
+        public double? MonthlyRent { get; set; } 
 
-        public int? Section8Rent { get; set; } 
+        public double? Section8Rent { get; set; } 
 
-        public string? StandardDepositProperty { get; set; } = string.Empty!;
+        public double? StandardDepositProperty { get; set; } 
 
-        public string? PetDeposit { get; set; } = string.Empty!;
+        public double? PetDeposit { get; set; } 
 
         public int? PropertyTypeId { get; set; }
 

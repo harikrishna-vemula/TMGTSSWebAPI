@@ -103,14 +103,14 @@
         public bool? NoOfSmallDogsCompanion { get; set; }
         public string? NoOfSmallDogsCompanions { get; set; }
         public string? NoOfSmallDogsCompanionPoints { get; set; }
-        public string? TotalPoints { get; set; }
+        public double? TotalPoints { get; set; }
         public bool? FinalApproval { get; set; }
-        public string? TotalDeposit { get; set; }
-        public string? DepositToHoldpaid { get; set; }
+        public double? TotalDeposit { get; set; }
+        public double? DepositToHoldpaid { get; set; }
 
-        public string? PetDeposit { get; set; }
-        public string? AdditionalDeposit { get; set; }
-        public string? BalanceDepositDue { get; set; }
+        public double? PetDeposit { get; set; }
+        public double? AdditionalDeposit { get; set; }
+        public double? BalanceDepositDue { get; set; }
 
         public string? ApplicantName { get; set; }
         public string? Property { get; set; }

@@ -158,6 +158,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@MonthlyRent", objApplicant.MonthlyRent);
                     cmd.Parameters.AddWithValue("@Section8Rent", objApplicant.Section8Rent);
                     cmd.Parameters.AddWithValue("@StandardDepositProperty", objApplicant.StandardDepositProperty);
+                    cmd.Parameters.AddWithValue("@PetDeposit", objApplicant.PetDeposit);
                     cmd.Parameters.AddWithValue("@PropertyTypeId", objApplicant.PropertyTypeId);
                     cmd.Parameters.AddWithValue("@CreatedBy", objApplicant.CreatedBy);
                     cmd.Parameters.AddWithValue("@ApplicationStatusId", objApplicant.ApplicationStatusId);
@@ -1550,6 +1551,53 @@ namespace TenantScoreSheet.Repository
             finally { sqlcon.Close(); }
 
             return applicantslist;
+        }
+
+        /// <summary>
+        /// GetFormulae method retrieves user details from the database based on the provided email address.
+        /// </summary>
+        /// <param name="email">The email address of the user whose details are to be retrieved.</param>
+        /// <returns>An object of the Users class containing the details of the specified user.</returns>
+        public List<Formulae> GetFormulae()
+        {
+            List<Formulae> formulae = new();
+            try
+            {
+                using (cmd = new SqlCommand("spGetFormulae", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Formulae Objuser = new()
+                        {
+                            ApplicantTypeId = System.Convert.IsDBNull(row["ApplicantTypeId"]) == true ? 0 : Convert.ToInt32(row["ApplicantTypeId"]),
+                            PropertyTypeId = System.Convert.IsDBNull(row["PropertyTypeId"]) == true ? 0 : Convert.ToInt32(row["PropertyTypeId"]),
+                            Description= Convert.ToString(row["Description"]),
+                            StartValue = Convert.ToString(row["StartValue"]),
+                            EndValue = Convert.ToString(row["EndValue"]),
+                            Calculation = Convert.ToString(row["Calculation"]),
+
+                        };
+
+                        formulae.Add(Objuser);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally { sqlcon.Close(); }
+
+            return formulae;
         }
     }
 }

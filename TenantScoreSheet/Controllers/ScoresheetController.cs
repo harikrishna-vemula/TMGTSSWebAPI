@@ -797,6 +797,32 @@ namespace TenantScoreSheet.Controllers
             }
             return scoresheetList;
         }
+
+        /// <summary>
+        /// Retrieves a list of all score sheets specific to applicant from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of Users objects, representing all users stored in the database.
+        /// </returns>
+        [HttpGet]
+        [Route("GetFormulae")]
+        public List<Formulae> GetFormulae()
+        {
+            ScoresheetRepository scoresheetRepository = new(configuration, connection);
+            List<Formulae> scoresheetList;
+            try
+            {
+                scoresheetList = scoresheetRepository.GetFormulae();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return scoresheetList;
+        }
     }
     // Other actions for Coversheet if needed...
 }

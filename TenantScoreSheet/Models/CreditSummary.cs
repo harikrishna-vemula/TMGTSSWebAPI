@@ -14,6 +14,8 @@
         public int? AccountPastDue60Days { get; set; }
         public int? CollectionAccounts { get; set; }
         public int? CollectionAccountsPoints { get; set; }
+
+        public int? CollectionMedicalAccountsPoints { get; set; }
         public int? MedicalCollections { get; set; }
         public bool? PropertyRelatedHousingRecord { get; set; }
         public int? PropertyRelatedHousingRecordPoints { get; set; }

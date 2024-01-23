@@ -7,6 +7,7 @@
         public int? ApplicantId { get; set; }
         public int? TenantSNo { get; set; }
         public bool? RentalReferance { get; set; }
+        public int? RentalReferancePoints { get; set; }
         public int? LL1LandlordType { get; set; }
         public bool? LL1ProperNotice { get; set; }
         public int? LL1ProperNoticePoints { get; set; }

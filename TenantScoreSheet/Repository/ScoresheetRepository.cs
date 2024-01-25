@@ -456,8 +456,9 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@DepositApproved", objCreditSummary.DepositApproved);
                     cmd.Parameters.AddWithValue("@DepositToHold", objCreditSummary.DepositToHold);
 
-
-                    cmd.Parameters.AddWithValue("@CreatedBy", objCreditSummary.CreatedBy);
+                    
+                    cmd.Parameters.AddWithValue("@CreditApproved", objCreditSummary.CreditApproved);
+                    cmd.Parameters.AddWithValue("@PaidByPrimaryTenant", objCreditSummary.PaidByPrimaryTenant);
                     sqlcon.Open();
 
                     cmd.ExecuteNonQuery();
@@ -557,6 +558,7 @@ namespace TenantScoreSheet.Repository
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenantId", objLandLordReferences.TenantId);
                     cmd.Parameters.AddWithValue("@RentalReferance", objLandLordReferences.RentalReferance);
+                    cmd.Parameters.AddWithValue("@RentalReferancePoints", objLandLordReferences.RentalReferancePoints);
                     cmd.Parameters.AddWithValue("@LandlordType", objLandLordReferences.LL1LandlordType);
                     cmd.Parameters.AddWithValue("@LL1ProperNotice", objLandLordReferences.LL1ProperNotice);
                     cmd.Parameters.AddWithValue("@LL1ProperNoticePoints", objLandLordReferences.LL1ProperNoticePoints);
@@ -899,6 +901,7 @@ namespace TenantScoreSheet.Repository
                     cmd.Parameters.AddWithValue("@PetDeposit", objPointsSummary.PetDeposit);
                     cmd.Parameters.AddWithValue("@AdditionalDeposit", objPointsSummary.AdditionalDeposit);
                     cmd.Parameters.AddWithValue("@BalanceDepositDue", objPointsSummary.BalanceDepositDue);
+                    cmd.Parameters.AddWithValue("@BalanceDepositDuePoints", objPointsSummary.BalanceDepositDuePoints);
 
                     cmd.Parameters.AddWithValue("@CreatedBy", objPointsSummary.CreatedBy);
                     sqlcon.Open();

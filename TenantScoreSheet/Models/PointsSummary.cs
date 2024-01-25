@@ -14,6 +14,8 @@
         public double? PetDeposit { get; set; }
         public double? AdditionalDeposit { get; set; }
         public double? BalanceDepositDue { get; set; }
+
+        public double? BalanceDepositDuePoints { get; set; }
         public string? CreatedBy { get; set; } = string.Empty!;
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; } = string.Empty!;
